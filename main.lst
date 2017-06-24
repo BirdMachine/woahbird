@@ -1,0 +1,2619 @@
+                              1 ;--------------------------------------------------------
+                              2 ; File Created by SDCC : free open source ANSI-C Compiler
+                              3 ; Version 3.4.0 #8981 (Jul 12 2014) (Linux)
+                              4 ; This file was generated Sat Jun 24 17:38:56 2017
+                              5 ;--------------------------------------------------------
+                              6 	.module main
+                              7 	.optsdcc -mgbz80
+                              8 	
+                              9 ;--------------------------------------------------------
+                             10 ; Public variables in this module
+                             11 ;--------------------------------------------------------
+                             12 	.globl _main
+                             13 	.globl _set_bkg_tiles
+                             14 	.globl _set_bkg_data
+                             15 	.globl _wait_vbl_done
+                             16 	.globl _joypad
+                             17 	.globl _blankScreen
+                             18 	.globl _helloWorld
+                             19 	.globl _alpha
+                             20 	.globl _init
+                             21 	.globl _updateSwitches
+                             22 	.globl _checkInput
+                             23 ;--------------------------------------------------------
+                             24 ; ram data
+                             25 ;--------------------------------------------------------
+                             26 	.area _DATA
+   0000                      27 _alpha::
+   0000                      28 	.ds 768
+   0300                      29 _helloWorld::
+   0300                      30 	.ds 20
+   0314                      31 _blankScreen::
+   0314                      32 	.ds 360
+                             33 ;--------------------------------------------------------
+                             34 ; absolute external ram data
+                             35 ;--------------------------------------------------------
+                             36 	.area _DABS (ABS)
+                             37 ;--------------------------------------------------------
+                             38 ; global & static initialisations
+                             39 ;--------------------------------------------------------
+                             40 	.area _HOME
+                             41 	.area _GSINIT
+                             42 	.area _GSFINAL
+                             43 	.area _GSINIT
+                             44 ;alpha.c:1: unsigned char alpha[] =
+   0000 21r00r00             45 	ld	hl,#_alpha
+   0003 36 7C                46 	ld	(hl),#0x7C
+   0005 21r01r00             47 	ld	hl,#(_alpha + 0x0001)
+   0008 36 7C                48 	ld	(hl),#0x7C
+   000A 21r02r00             49 	ld	hl,#(_alpha + 0x0002)
+   000D 36 86                50 	ld	(hl),#0x86
+   000F 21r03r00             51 	ld	hl,#(_alpha + 0x0003)
+   0012 36 86                52 	ld	(hl),#0x86
+   0014 21r04r00             53 	ld	hl,#(_alpha + 0x0004)
+   0017 36 8A                54 	ld	(hl),#0x8A
+   0019 21r05r00             55 	ld	hl,#(_alpha + 0x0005)
+   001C 36 8A                56 	ld	(hl),#0x8A
+   001E 21r06r00             57 	ld	hl,#(_alpha + 0x0006)
+   0021 36 92                58 	ld	(hl),#0x92
+   0023 21r07r00             59 	ld	hl,#(_alpha + 0x0007)
+   0026 36 92                60 	ld	(hl),#0x92
+   0028 21r08r00             61 	ld	hl,#(_alpha + 0x0008)
+   002B 36 A2                62 	ld	(hl),#0xA2
+   002D 21r09r00             63 	ld	hl,#(_alpha + 0x0009)
+   0030 36 A2                64 	ld	(hl),#0xA2
+   0032 21r0Ar00             65 	ld	hl,#(_alpha + 0x000a)
+   0035 36 C2                66 	ld	(hl),#0xC2
+   0037 21r0Br00             67 	ld	hl,#(_alpha + 0x000b)
+   003A 36 C2                68 	ld	(hl),#0xC2
+   003C 21r0Cr00             69 	ld	hl,#(_alpha + 0x000c)
+   003F 36 7C                70 	ld	(hl),#0x7C
+   0041 21r0Dr00             71 	ld	hl,#(_alpha + 0x000d)
+   0044 36 7C                72 	ld	(hl),#0x7C
+   0046 01r0Er00             73 	ld	bc,#_alpha + 14
+   0049 AF                   74 	xor	a, a
+   004A 02                   75 	ld	(bc),a
+   004B 01r0Fr00             76 	ld	bc,#_alpha + 15
+   004E AF                   77 	xor	a, a
+   004F 02                   78 	ld	(bc),a
+   0050 21r10r00             79 	ld	hl,#(_alpha + 0x0010)
+   0053 36 10                80 	ld	(hl),#0x10
+   0055 21r11r00             81 	ld	hl,#(_alpha + 0x0011)
+   0058 36 10                82 	ld	(hl),#0x10
+   005A 21r12r00             83 	ld	hl,#(_alpha + 0x0012)
+   005D 36 30                84 	ld	(hl),#0x30
+   005F 21r13r00             85 	ld	hl,#(_alpha + 0x0013)
+   0062 36 30                86 	ld	(hl),#0x30
+   0064 21r14r00             87 	ld	hl,#(_alpha + 0x0014)
+   0067 36 10                88 	ld	(hl),#0x10
+   0069 21r15r00             89 	ld	hl,#(_alpha + 0x0015)
+   006C 36 10                90 	ld	(hl),#0x10
+   006E 21r16r00             91 	ld	hl,#(_alpha + 0x0016)
+   0071 36 10                92 	ld	(hl),#0x10
+   0073 21r17r00             93 	ld	hl,#(_alpha + 0x0017)
+   0076 36 10                94 	ld	(hl),#0x10
+   0078 21r18r00             95 	ld	hl,#(_alpha + 0x0018)
+   007B 36 10                96 	ld	(hl),#0x10
+   007D 21r19r00             97 	ld	hl,#(_alpha + 0x0019)
+   0080 36 10                98 	ld	(hl),#0x10
+   0082 21r1Ar00             99 	ld	hl,#(_alpha + 0x001a)
+   0085 36 10               100 	ld	(hl),#0x10
+   0087 21r1Br00            101 	ld	hl,#(_alpha + 0x001b)
+   008A 36 10               102 	ld	(hl),#0x10
+   008C 21r1Cr00            103 	ld	hl,#(_alpha + 0x001c)
+   008F 36 7C               104 	ld	(hl),#0x7C
+   0091 21r1Dr00            105 	ld	hl,#(_alpha + 0x001d)
+   0094 36 7C               106 	ld	(hl),#0x7C
+   0096 01r1Er00            107 	ld	bc,#_alpha + 30
+   0099 AF                  108 	xor	a, a
+   009A 02                  109 	ld	(bc),a
+   009B 01r1Fr00            110 	ld	bc,#_alpha + 31
+   009E AF                  111 	xor	a, a
+   009F 02                  112 	ld	(bc),a
+   00A0 21r20r00            113 	ld	hl,#(_alpha + 0x0020)
+   00A3 36 7C               114 	ld	(hl),#0x7C
+   00A5 21r21r00            115 	ld	hl,#(_alpha + 0x0021)
+   00A8 36 7C               116 	ld	(hl),#0x7C
+   00AA 21r22r00            117 	ld	hl,#(_alpha + 0x0022)
+   00AD 36 82               118 	ld	(hl),#0x82
+   00AF 21r23r00            119 	ld	hl,#(_alpha + 0x0023)
+   00B2 36 82               120 	ld	(hl),#0x82
+   00B4 21r24r00            121 	ld	hl,#(_alpha + 0x0024)
+   00B7 36 02               122 	ld	(hl),#0x02
+   00B9 21r25r00            123 	ld	hl,#(_alpha + 0x0025)
+   00BC 36 02               124 	ld	(hl),#0x02
+   00BE 21r26r00            125 	ld	hl,#(_alpha + 0x0026)
+   00C1 36 1C               126 	ld	(hl),#0x1C
+   00C3 21r27r00            127 	ld	hl,#(_alpha + 0x0027)
+   00C6 36 1C               128 	ld	(hl),#0x1C
+   00C8 21r28r00            129 	ld	hl,#(_alpha + 0x0028)
+   00CB 36 60               130 	ld	(hl),#0x60
+   00CD 21r29r00            131 	ld	hl,#(_alpha + 0x0029)
+   00D0 36 60               132 	ld	(hl),#0x60
+   00D2 21r2Ar00            133 	ld	hl,#(_alpha + 0x002a)
+   00D5 36 80               134 	ld	(hl),#0x80
+   00D7 21r2Br00            135 	ld	hl,#(_alpha + 0x002b)
+   00DA 36 80               136 	ld	(hl),#0x80
+   00DC 21r2Cr00            137 	ld	hl,#(_alpha + 0x002c)
+   00DF 36 FE               138 	ld	(hl),#0xFE
+   00E1 21r2Dr00            139 	ld	hl,#(_alpha + 0x002d)
+   00E4 36 FE               140 	ld	(hl),#0xFE
+   00E6 01r2Er00            141 	ld	bc,#_alpha + 46
+   00E9 AF                  142 	xor	a, a
+   00EA 02                  143 	ld	(bc),a
+   00EB 01r2Fr00            144 	ld	bc,#_alpha + 47
+   00EE AF                  145 	xor	a, a
+   00EF 02                  146 	ld	(bc),a
+   00F0 21r30r00            147 	ld	hl,#(_alpha + 0x0030)
+   00F3 36 FE               148 	ld	(hl),#0xFE
+   00F5 21r31r00            149 	ld	hl,#(_alpha + 0x0031)
+   00F8 36 FE               150 	ld	(hl),#0xFE
+   00FA 21r32r00            151 	ld	hl,#(_alpha + 0x0032)
+   00FD 36 04               152 	ld	(hl),#0x04
+   00FF 21r33r00            153 	ld	hl,#(_alpha + 0x0033)
+   0102 36 04               154 	ld	(hl),#0x04
+   0104 21r34r00            155 	ld	hl,#(_alpha + 0x0034)
+   0107 36 18               156 	ld	(hl),#0x18
+   0109 21r35r00            157 	ld	hl,#(_alpha + 0x0035)
+   010C 36 18               158 	ld	(hl),#0x18
+   010E 21r36r00            159 	ld	hl,#(_alpha + 0x0036)
+   0111 36 04               160 	ld	(hl),#0x04
+   0113 21r37r00            161 	ld	hl,#(_alpha + 0x0037)
+   0116 36 04               162 	ld	(hl),#0x04
+   0118 21r38r00            163 	ld	hl,#(_alpha + 0x0038)
+   011B 36 02               164 	ld	(hl),#0x02
+   011D 21r39r00            165 	ld	hl,#(_alpha + 0x0039)
+   0120 36 02               166 	ld	(hl),#0x02
+   0122 21r3Ar00            167 	ld	hl,#(_alpha + 0x003a)
+   0125 36 82               168 	ld	(hl),#0x82
+   0127 21r3Br00            169 	ld	hl,#(_alpha + 0x003b)
+   012A 36 82               170 	ld	(hl),#0x82
+   012C 21r3Cr00            171 	ld	hl,#(_alpha + 0x003c)
+   012F 36 7C               172 	ld	(hl),#0x7C
+   0131 21r3Dr00            173 	ld	hl,#(_alpha + 0x003d)
+   0134 36 7C               174 	ld	(hl),#0x7C
+   0136 01r3Er00            175 	ld	bc,#_alpha + 62
+   0139 AF                  176 	xor	a, a
+   013A 02                  177 	ld	(bc),a
+   013B 01r3Fr00            178 	ld	bc,#_alpha + 63
+   013E AF                  179 	xor	a, a
+   013F 02                  180 	ld	(bc),a
+   0140 21r40r00            181 	ld	hl,#(_alpha + 0x0040)
+   0143 36 0C               182 	ld	(hl),#0x0C
+   0145 21r41r00            183 	ld	hl,#(_alpha + 0x0041)
+   0148 36 0C               184 	ld	(hl),#0x0C
+   014A 21r42r00            185 	ld	hl,#(_alpha + 0x0042)
+   014D 36 14               186 	ld	(hl),#0x14
+   014F 21r43r00            187 	ld	hl,#(_alpha + 0x0043)
+   0152 36 14               188 	ld	(hl),#0x14
+   0154 21r44r00            189 	ld	hl,#(_alpha + 0x0044)
+   0157 36 24               190 	ld	(hl),#0x24
+   0159 21r45r00            191 	ld	hl,#(_alpha + 0x0045)
+   015C 36 24               192 	ld	(hl),#0x24
+   015E 21r46r00            193 	ld	hl,#(_alpha + 0x0046)
+   0161 36 44               194 	ld	(hl),#0x44
+   0163 21r47r00            195 	ld	hl,#(_alpha + 0x0047)
+   0166 36 44               196 	ld	(hl),#0x44
+   0168 21r48r00            197 	ld	hl,#(_alpha + 0x0048)
+   016B 36 84               198 	ld	(hl),#0x84
+   016D 21r49r00            199 	ld	hl,#(_alpha + 0x0049)
+   0170 36 84               200 	ld	(hl),#0x84
+   0172 21r4Ar00            201 	ld	hl,#(_alpha + 0x004a)
+   0175 36 FE               202 	ld	(hl),#0xFE
+   0177 21r4Br00            203 	ld	hl,#(_alpha + 0x004b)
+   017A 36 FE               204 	ld	(hl),#0xFE
+   017C 21r4Cr00            205 	ld	hl,#(_alpha + 0x004c)
+   017F 36 04               206 	ld	(hl),#0x04
+   0181 21r4Dr00            207 	ld	hl,#(_alpha + 0x004d)
+   0184 36 04               208 	ld	(hl),#0x04
+   0186 01r4Er00            209 	ld	bc,#_alpha + 78
+   0189 AF                  210 	xor	a, a
+   018A 02                  211 	ld	(bc),a
+   018B 01r4Fr00            212 	ld	bc,#_alpha + 79
+   018E AF                  213 	xor	a, a
+   018F 02                  214 	ld	(bc),a
+   0190 21r50r00            215 	ld	hl,#(_alpha + 0x0050)
+   0193 36 FC               216 	ld	(hl),#0xFC
+   0195 21r51r00            217 	ld	hl,#(_alpha + 0x0051)
+   0198 36 FC               218 	ld	(hl),#0xFC
+   019A 21r52r00            219 	ld	hl,#(_alpha + 0x0052)
+   019D 36 80               220 	ld	(hl),#0x80
+   019F 21r53r00            221 	ld	hl,#(_alpha + 0x0053)
+   01A2 36 80               222 	ld	(hl),#0x80
+   01A4 21r54r00            223 	ld	hl,#(_alpha + 0x0054)
+   01A7 36 FC               224 	ld	(hl),#0xFC
+   01A9 21r55r00            225 	ld	hl,#(_alpha + 0x0055)
+   01AC 36 FC               226 	ld	(hl),#0xFC
+   01AE 21r56r00            227 	ld	hl,#(_alpha + 0x0056)
+   01B1 36 02               228 	ld	(hl),#0x02
+   01B3 21r57r00            229 	ld	hl,#(_alpha + 0x0057)
+   01B6 36 02               230 	ld	(hl),#0x02
+   01B8 21r58r00            231 	ld	hl,#(_alpha + 0x0058)
+   01BB 36 02               232 	ld	(hl),#0x02
+   01BD 21r59r00            233 	ld	hl,#(_alpha + 0x0059)
+   01C0 36 02               234 	ld	(hl),#0x02
+   01C2 21r5Ar00            235 	ld	hl,#(_alpha + 0x005a)
+   01C5 36 82               236 	ld	(hl),#0x82
+   01C7 21r5Br00            237 	ld	hl,#(_alpha + 0x005b)
+   01CA 36 82               238 	ld	(hl),#0x82
+   01CC 21r5Cr00            239 	ld	hl,#(_alpha + 0x005c)
+   01CF 36 7C               240 	ld	(hl),#0x7C
+   01D1 21r5Dr00            241 	ld	hl,#(_alpha + 0x005d)
+   01D4 36 7C               242 	ld	(hl),#0x7C
+   01D6 01r5Er00            243 	ld	bc,#_alpha + 94
+   01D9 AF                  244 	xor	a, a
+   01DA 02                  245 	ld	(bc),a
+   01DB 01r5Fr00            246 	ld	bc,#_alpha + 95
+   01DE AF                  247 	xor	a, a
+   01DF 02                  248 	ld	(bc),a
+   01E0 21r60r00            249 	ld	hl,#(_alpha + 0x0060)
+   01E3 36 7C               250 	ld	(hl),#0x7C
+   01E5 21r61r00            251 	ld	hl,#(_alpha + 0x0061)
+   01E8 36 7C               252 	ld	(hl),#0x7C
+   01EA 21r62r00            253 	ld	hl,#(_alpha + 0x0062)
+   01ED 36 80               254 	ld	(hl),#0x80
+   01EF 21r63r00            255 	ld	hl,#(_alpha + 0x0063)
+   01F2 36 80               256 	ld	(hl),#0x80
+   01F4 21r64r00            257 	ld	hl,#(_alpha + 0x0064)
+   01F7 36 80               258 	ld	(hl),#0x80
+   01F9 21r65r00            259 	ld	hl,#(_alpha + 0x0065)
+   01FC 36 80               260 	ld	(hl),#0x80
+   01FE 21r66r00            261 	ld	hl,#(_alpha + 0x0066)
+   0201 36 FC               262 	ld	(hl),#0xFC
+   0203 21r67r00            263 	ld	hl,#(_alpha + 0x0067)
+   0206 36 FC               264 	ld	(hl),#0xFC
+   0208 21r68r00            265 	ld	hl,#(_alpha + 0x0068)
+   020B 36 82               266 	ld	(hl),#0x82
+   020D 21r69r00            267 	ld	hl,#(_alpha + 0x0069)
+   0210 36 82               268 	ld	(hl),#0x82
+   0212 21r6Ar00            269 	ld	hl,#(_alpha + 0x006a)
+   0215 36 82               270 	ld	(hl),#0x82
+   0217 21r6Br00            271 	ld	hl,#(_alpha + 0x006b)
+   021A 36 82               272 	ld	(hl),#0x82
+   021C 21r6Cr00            273 	ld	hl,#(_alpha + 0x006c)
+   021F 36 7C               274 	ld	(hl),#0x7C
+   0221 21r6Dr00            275 	ld	hl,#(_alpha + 0x006d)
+   0224 36 7C               276 	ld	(hl),#0x7C
+   0226 01r6Er00            277 	ld	bc,#_alpha + 110
+   0229 AF                  278 	xor	a, a
+   022A 02                  279 	ld	(bc),a
+   022B 01r6Fr00            280 	ld	bc,#_alpha + 111
+   022E AF                  281 	xor	a, a
+   022F 02                  282 	ld	(bc),a
+   0230 21r70r00            283 	ld	hl,#(_alpha + 0x0070)
+   0233 36 FE               284 	ld	(hl),#0xFE
+   0235 21r71r00            285 	ld	hl,#(_alpha + 0x0071)
+   0238 36 FE               286 	ld	(hl),#0xFE
+   023A 21r72r00            287 	ld	hl,#(_alpha + 0x0072)
+   023D 36 82               288 	ld	(hl),#0x82
+   023F 21r73r00            289 	ld	hl,#(_alpha + 0x0073)
+   0242 36 82               290 	ld	(hl),#0x82
+   0244 21r74r00            291 	ld	hl,#(_alpha + 0x0074)
+   0247 36 04               292 	ld	(hl),#0x04
+   0249 21r75r00            293 	ld	hl,#(_alpha + 0x0075)
+   024C 36 04               294 	ld	(hl),#0x04
+   024E 21r76r00            295 	ld	hl,#(_alpha + 0x0076)
+   0251 36 08               296 	ld	(hl),#0x08
+   0253 21r77r00            297 	ld	hl,#(_alpha + 0x0077)
+   0256 36 08               298 	ld	(hl),#0x08
+   0258 21r78r00            299 	ld	hl,#(_alpha + 0x0078)
+   025B 36 10               300 	ld	(hl),#0x10
+   025D 21r79r00            301 	ld	hl,#(_alpha + 0x0079)
+   0260 36 10               302 	ld	(hl),#0x10
+   0262 21r7Ar00            303 	ld	hl,#(_alpha + 0x007a)
+   0265 36 10               304 	ld	(hl),#0x10
+   0267 21r7Br00            305 	ld	hl,#(_alpha + 0x007b)
+   026A 36 10               306 	ld	(hl),#0x10
+   026C 21r7Cr00            307 	ld	hl,#(_alpha + 0x007c)
+   026F 36 10               308 	ld	(hl),#0x10
+   0271 21r7Dr00            309 	ld	hl,#(_alpha + 0x007d)
+   0274 36 10               310 	ld	(hl),#0x10
+   0276 01r7Er00            311 	ld	bc,#_alpha + 126
+   0279 AF                  312 	xor	a, a
+   027A 02                  313 	ld	(bc),a
+   027B 01r7Fr00            314 	ld	bc,#_alpha + 127
+   027E AF                  315 	xor	a, a
+   027F 02                  316 	ld	(bc),a
+   0280 21r80r00            317 	ld	hl,#(_alpha + 0x0080)
+   0283 36 7C               318 	ld	(hl),#0x7C
+   0285 21r81r00            319 	ld	hl,#(_alpha + 0x0081)
+   0288 36 7C               320 	ld	(hl),#0x7C
+   028A 21r82r00            321 	ld	hl,#(_alpha + 0x0082)
+   028D 36 82               322 	ld	(hl),#0x82
+   028F 21r83r00            323 	ld	hl,#(_alpha + 0x0083)
+   0292 36 82               324 	ld	(hl),#0x82
+   0294 21r84r00            325 	ld	hl,#(_alpha + 0x0084)
+   0297 36 82               326 	ld	(hl),#0x82
+   0299 21r85r00            327 	ld	hl,#(_alpha + 0x0085)
+   029C 36 82               328 	ld	(hl),#0x82
+   029E 21r86r00            329 	ld	hl,#(_alpha + 0x0086)
+   02A1 36 7C               330 	ld	(hl),#0x7C
+   02A3 21r87r00            331 	ld	hl,#(_alpha + 0x0087)
+   02A6 36 7C               332 	ld	(hl),#0x7C
+   02A8 21r88r00            333 	ld	hl,#(_alpha + 0x0088)
+   02AB 36 82               334 	ld	(hl),#0x82
+   02AD 21r89r00            335 	ld	hl,#(_alpha + 0x0089)
+   02B0 36 82               336 	ld	(hl),#0x82
+   02B2 21r8Ar00            337 	ld	hl,#(_alpha + 0x008a)
+   02B5 36 82               338 	ld	(hl),#0x82
+   02B7 21r8Br00            339 	ld	hl,#(_alpha + 0x008b)
+   02BA 36 82               340 	ld	(hl),#0x82
+   02BC 21r8Cr00            341 	ld	hl,#(_alpha + 0x008c)
+   02BF 36 7C               342 	ld	(hl),#0x7C
+   02C1 21r8Dr00            343 	ld	hl,#(_alpha + 0x008d)
+   02C4 36 7C               344 	ld	(hl),#0x7C
+   02C6 01r8Er00            345 	ld	bc,#_alpha + 142
+   02C9 AF                  346 	xor	a, a
+   02CA 02                  347 	ld	(bc),a
+   02CB 01r8Fr00            348 	ld	bc,#_alpha + 143
+   02CE AF                  349 	xor	a, a
+   02CF 02                  350 	ld	(bc),a
+   02D0 21r90r00            351 	ld	hl,#(_alpha + 0x0090)
+   02D3 36 7C               352 	ld	(hl),#0x7C
+   02D5 21r91r00            353 	ld	hl,#(_alpha + 0x0091)
+   02D8 36 7C               354 	ld	(hl),#0x7C
+   02DA 21r92r00            355 	ld	hl,#(_alpha + 0x0092)
+   02DD 36 82               356 	ld	(hl),#0x82
+   02DF 21r93r00            357 	ld	hl,#(_alpha + 0x0093)
+   02E2 36 82               358 	ld	(hl),#0x82
+   02E4 21r94r00            359 	ld	hl,#(_alpha + 0x0094)
+   02E7 36 82               360 	ld	(hl),#0x82
+   02E9 21r95r00            361 	ld	hl,#(_alpha + 0x0095)
+   02EC 36 82               362 	ld	(hl),#0x82
+   02EE 21r96r00            363 	ld	hl,#(_alpha + 0x0096)
+   02F1 36 7E               364 	ld	(hl),#0x7E
+   02F3 21r97r00            365 	ld	hl,#(_alpha + 0x0097)
+   02F6 36 7E               366 	ld	(hl),#0x7E
+   02F8 21r98r00            367 	ld	hl,#(_alpha + 0x0098)
+   02FB 36 02               368 	ld	(hl),#0x02
+   02FD 21r99r00            369 	ld	hl,#(_alpha + 0x0099)
+   0300 36 02               370 	ld	(hl),#0x02
+   0302 21r9Ar00            371 	ld	hl,#(_alpha + 0x009a)
+   0305 36 02               372 	ld	(hl),#0x02
+   0307 21r9Br00            373 	ld	hl,#(_alpha + 0x009b)
+   030A 36 02               374 	ld	(hl),#0x02
+   030C 21r9Cr00            375 	ld	hl,#(_alpha + 0x009c)
+   030F 36 7C               376 	ld	(hl),#0x7C
+   0311 21r9Dr00            377 	ld	hl,#(_alpha + 0x009d)
+   0314 36 7C               378 	ld	(hl),#0x7C
+   0316 01r9Er00            379 	ld	bc,#_alpha + 158
+   0319 AF                  380 	xor	a, a
+   031A 02                  381 	ld	(bc),a
+   031B 01r9Fr00            382 	ld	bc,#_alpha + 159
+   031E AF                  383 	xor	a, a
+   031F 02                  384 	ld	(bc),a
+   0320 01rA0r00            385 	ld	bc,#_alpha + 160
+   0323 AF                  386 	xor	a, a
+   0324 02                  387 	ld	(bc),a
+   0325 01rA1r00            388 	ld	bc,#_alpha + 161
+   0328 AF                  389 	xor	a, a
+   0329 02                  390 	ld	(bc),a
+   032A 21rA2r00            391 	ld	hl,#(_alpha + 0x00a2)
+   032D 36 30               392 	ld	(hl),#0x30
+   032F 21rA3r00            393 	ld	hl,#(_alpha + 0x00a3)
+   0332 36 30               394 	ld	(hl),#0x30
+   0334 21rA4r00            395 	ld	hl,#(_alpha + 0x00a4)
+   0337 36 30               396 	ld	(hl),#0x30
+   0339 21rA5r00            397 	ld	hl,#(_alpha + 0x00a5)
+   033C 36 30               398 	ld	(hl),#0x30
+   033E 01rA6r00            399 	ld	bc,#_alpha + 166
+   0341 AF                  400 	xor	a, a
+   0342 02                  401 	ld	(bc),a
+   0343 01rA7r00            402 	ld	bc,#_alpha + 167
+   0346 AF                  403 	xor	a, a
+   0347 02                  404 	ld	(bc),a
+   0348 21rA8r00            405 	ld	hl,#(_alpha + 0x00a8)
+   034B 36 30               406 	ld	(hl),#0x30
+   034D 21rA9r00            407 	ld	hl,#(_alpha + 0x00a9)
+   0350 36 30               408 	ld	(hl),#0x30
+   0352 21rAAr00            409 	ld	hl,#(_alpha + 0x00aa)
+   0355 36 30               410 	ld	(hl),#0x30
+   0357 21rABr00            411 	ld	hl,#(_alpha + 0x00ab)
+   035A 36 30               412 	ld	(hl),#0x30
+   035C 01rACr00            413 	ld	bc,#_alpha + 172
+   035F AF                  414 	xor	a, a
+   0360 02                  415 	ld	(bc),a
+   0361 01rADr00            416 	ld	bc,#_alpha + 173
+   0364 AF                  417 	xor	a, a
+   0365 02                  418 	ld	(bc),a
+   0366 01rAEr00            419 	ld	bc,#_alpha + 174
+   0369 AF                  420 	xor	a, a
+   036A 02                  421 	ld	(bc),a
+   036B 01rAFr00            422 	ld	bc,#_alpha + 175
+   036E AF                  423 	xor	a, a
+   036F 02                  424 	ld	(bc),a
+   0370 01rB0r00            425 	ld	bc,#_alpha + 176
+   0373 AF                  426 	xor	a, a
+   0374 02                  427 	ld	(bc),a
+   0375 01rB1r00            428 	ld	bc,#_alpha + 177
+   0378 AF                  429 	xor	a, a
+   0379 02                  430 	ld	(bc),a
+   037A 21rB2r00            431 	ld	hl,#(_alpha + 0x00b2)
+   037D 36 30               432 	ld	(hl),#0x30
+   037F 21rB3r00            433 	ld	hl,#(_alpha + 0x00b3)
+   0382 36 30               434 	ld	(hl),#0x30
+   0384 21rB4r00            435 	ld	hl,#(_alpha + 0x00b4)
+   0387 36 30               436 	ld	(hl),#0x30
+   0389 21rB5r00            437 	ld	hl,#(_alpha + 0x00b5)
+   038C 36 30               438 	ld	(hl),#0x30
+   038E 01rB6r00            439 	ld	bc,#_alpha + 182
+   0391 AF                  440 	xor	a, a
+   0392 02                  441 	ld	(bc),a
+   0393 01rB7r00            442 	ld	bc,#_alpha + 183
+   0396 AF                  443 	xor	a, a
+   0397 02                  444 	ld	(bc),a
+   0398 21rB8r00            445 	ld	hl,#(_alpha + 0x00b8)
+   039B 36 30               446 	ld	(hl),#0x30
+   039D 21rB9r00            447 	ld	hl,#(_alpha + 0x00b9)
+   03A0 36 30               448 	ld	(hl),#0x30
+   03A2 21rBAr00            449 	ld	hl,#(_alpha + 0x00ba)
+   03A5 36 10               450 	ld	(hl),#0x10
+   03A7 21rBBr00            451 	ld	hl,#(_alpha + 0x00bb)
+   03AA 36 10               452 	ld	(hl),#0x10
+   03AC 21rBCr00            453 	ld	hl,#(_alpha + 0x00bc)
+   03AF 36 20               454 	ld	(hl),#0x20
+   03B1 21rBDr00            455 	ld	hl,#(_alpha + 0x00bd)
+   03B4 36 20               456 	ld	(hl),#0x20
+   03B6 01rBEr00            457 	ld	bc,#_alpha + 190
+   03B9 AF                  458 	xor	a, a
+   03BA 02                  459 	ld	(bc),a
+   03BB 01rBFr00            460 	ld	bc,#_alpha + 191
+   03BE AF                  461 	xor	a, a
+   03BF 02                  462 	ld	(bc),a
+   03C0 01rC0r00            463 	ld	bc,#_alpha + 192
+   03C3 AF                  464 	xor	a, a
+   03C4 02                  465 	ld	(bc),a
+   03C5 01rC1r00            466 	ld	bc,#_alpha + 193
+   03C8 AF                  467 	xor	a, a
+   03C9 02                  468 	ld	(bc),a
+   03CA 01rC2r00            469 	ld	bc,#_alpha + 194
+   03CD AF                  470 	xor	a, a
+   03CE 02                  471 	ld	(bc),a
+   03CF 01rC3r00            472 	ld	bc,#_alpha + 195
+   03D2 AF                  473 	xor	a, a
+   03D3 02                  474 	ld	(bc),a
+   03D4 01rC4r00            475 	ld	bc,#_alpha + 196
+   03D7 AF                  476 	xor	a, a
+   03D8 02                  477 	ld	(bc),a
+   03D9 01rC5r00            478 	ld	bc,#_alpha + 197
+   03DC AF                  479 	xor	a, a
+   03DD 02                  480 	ld	(bc),a
+   03DE 01rC6r00            481 	ld	bc,#_alpha + 198
+   03E1 AF                  482 	xor	a, a
+   03E2 02                  483 	ld	(bc),a
+   03E3 01rC7r00            484 	ld	bc,#_alpha + 199
+   03E6 AF                  485 	xor	a, a
+   03E7 02                  486 	ld	(bc),a
+   03E8 21rC8r00            487 	ld	hl,#(_alpha + 0x00c8)
+   03EB 36 18               488 	ld	(hl),#0x18
+   03ED 21rC9r00            489 	ld	hl,#(_alpha + 0x00c9)
+   03F0 36 18               490 	ld	(hl),#0x18
+   03F2 21rCAr00            491 	ld	hl,#(_alpha + 0x00ca)
+   03F5 36 08               492 	ld	(hl),#0x08
+   03F7 21rCBr00            493 	ld	hl,#(_alpha + 0x00cb)
+   03FA 36 08               494 	ld	(hl),#0x08
+   03FC 21rCCr00            495 	ld	hl,#(_alpha + 0x00cc)
+   03FF 36 10               496 	ld	(hl),#0x10
+   0401 21rCDr00            497 	ld	hl,#(_alpha + 0x00cd)
+   0404 36 10               498 	ld	(hl),#0x10
+   0406 01rCEr00            499 	ld	bc,#_alpha + 206
+   0409 AF                  500 	xor	a, a
+   040A 02                  501 	ld	(bc),a
+   040B 01rCFr00            502 	ld	bc,#_alpha + 207
+   040E AF                  503 	xor	a, a
+   040F 02                  504 	ld	(bc),a
+   0410 01rD0r00            505 	ld	bc,#_alpha + 208
+   0413 AF                  506 	xor	a, a
+   0414 02                  507 	ld	(bc),a
+   0415 01rD1r00            508 	ld	bc,#_alpha + 209
+   0418 AF                  509 	xor	a, a
+   0419 02                  510 	ld	(bc),a
+   041A 01rD2r00            511 	ld	bc,#_alpha + 210
+   041D AF                  512 	xor	a, a
+   041E 02                  513 	ld	(bc),a
+   041F 01rD3r00            514 	ld	bc,#_alpha + 211
+   0422 AF                  515 	xor	a, a
+   0423 02                  516 	ld	(bc),a
+   0424 01rD4r00            517 	ld	bc,#_alpha + 212
+   0427 AF                  518 	xor	a, a
+   0428 02                  519 	ld	(bc),a
+   0429 01rD5r00            520 	ld	bc,#_alpha + 213
+   042C AF                  521 	xor	a, a
+   042D 02                  522 	ld	(bc),a
+   042E 21rD6r00            523 	ld	hl,#(_alpha + 0x00d6)
+   0431 36 3E               524 	ld	(hl),#0x3E
+   0433 21rD7r00            525 	ld	hl,#(_alpha + 0x00d7)
+   0436 36 3E               526 	ld	(hl),#0x3E
+   0438 01rD8r00            527 	ld	bc,#_alpha + 216
+   043B AF                  528 	xor	a, a
+   043C 02                  529 	ld	(bc),a
+   043D 01rD9r00            530 	ld	bc,#_alpha + 217
+   0440 AF                  531 	xor	a, a
+   0441 02                  532 	ld	(bc),a
+   0442 01rDAr00            533 	ld	bc,#_alpha + 218
+   0445 AF                  534 	xor	a, a
+   0446 02                  535 	ld	(bc),a
+   0447 01rDBr00            536 	ld	bc,#_alpha + 219
+   044A AF                  537 	xor	a, a
+   044B 02                  538 	ld	(bc),a
+   044C 01rDCr00            539 	ld	bc,#_alpha + 220
+   044F AF                  540 	xor	a, a
+   0450 02                  541 	ld	(bc),a
+   0451 01rDDr00            542 	ld	bc,#_alpha + 221
+   0454 AF                  543 	xor	a, a
+   0455 02                  544 	ld	(bc),a
+   0456 01rDEr00            545 	ld	bc,#_alpha + 222
+   0459 AF                  546 	xor	a, a
+   045A 02                  547 	ld	(bc),a
+   045B 01rDFr00            548 	ld	bc,#_alpha + 223
+   045E AF                  549 	xor	a, a
+   045F 02                  550 	ld	(bc),a
+   0460 01rE0r00            551 	ld	bc,#_alpha + 224
+   0463 AF                  552 	xor	a, a
+   0464 02                  553 	ld	(bc),a
+   0465 01rE1r00            554 	ld	bc,#_alpha + 225
+   0468 AF                  555 	xor	a, a
+   0469 02                  556 	ld	(bc),a
+   046A 01rE2r00            557 	ld	bc,#_alpha + 226
+   046D AF                  558 	xor	a, a
+   046E 02                  559 	ld	(bc),a
+   046F 01rE3r00            560 	ld	bc,#_alpha + 227
+   0472 AF                  561 	xor	a, a
+   0473 02                  562 	ld	(bc),a
+   0474 01rE4r00            563 	ld	bc,#_alpha + 228
+   0477 AF                  564 	xor	a, a
+   0478 02                  565 	ld	(bc),a
+   0479 01rE5r00            566 	ld	bc,#_alpha + 229
+   047C AF                  567 	xor	a, a
+   047D 02                  568 	ld	(bc),a
+   047E 01rE6r00            569 	ld	bc,#_alpha + 230
+   0481 AF                  570 	xor	a, a
+   0482 02                  571 	ld	(bc),a
+   0483 01rE7r00            572 	ld	bc,#_alpha + 231
+   0486 AF                  573 	xor	a, a
+   0487 02                  574 	ld	(bc),a
+   0488 01rE8r00            575 	ld	bc,#_alpha + 232
+   048B AF                  576 	xor	a, a
+   048C 02                  577 	ld	(bc),a
+   048D 01rE9r00            578 	ld	bc,#_alpha + 233
+   0490 AF                  579 	xor	a, a
+   0491 02                  580 	ld	(bc),a
+   0492 21rEAr00            581 	ld	hl,#(_alpha + 0x00ea)
+   0495 36 18               582 	ld	(hl),#0x18
+   0497 21rEBr00            583 	ld	hl,#(_alpha + 0x00eb)
+   049A 36 18               584 	ld	(hl),#0x18
+   049C 21rECr00            585 	ld	hl,#(_alpha + 0x00ec)
+   049F 36 18               586 	ld	(hl),#0x18
+   04A1 21rEDr00            587 	ld	hl,#(_alpha + 0x00ed)
+   04A4 36 18               588 	ld	(hl),#0x18
+   04A6 01rEEr00            589 	ld	bc,#_alpha + 238
+   04A9 AF                  590 	xor	a, a
+   04AA 02                  591 	ld	(bc),a
+   04AB 01rEFr00            592 	ld	bc,#_alpha + 239
+   04AE AF                  593 	xor	a, a
+   04AF 02                  594 	ld	(bc),a
+   04B0 21rF0r00            595 	ld	hl,#(_alpha + 0x00f0)
+   04B3 36 01               596 	ld	(hl),#0x01
+   04B5 21rF1r00            597 	ld	hl,#(_alpha + 0x00f1)
+   04B8 36 01               598 	ld	(hl),#0x01
+   04BA 21rF2r00            599 	ld	hl,#(_alpha + 0x00f2)
+   04BD 36 02               600 	ld	(hl),#0x02
+   04BF 21rF3r00            601 	ld	hl,#(_alpha + 0x00f3)
+   04C2 36 02               602 	ld	(hl),#0x02
+   04C4 21rF4r00            603 	ld	hl,#(_alpha + 0x00f4)
+   04C7 36 04               604 	ld	(hl),#0x04
+   04C9 21rF5r00            605 	ld	hl,#(_alpha + 0x00f5)
+   04CC 36 04               606 	ld	(hl),#0x04
+   04CE 21rF6r00            607 	ld	hl,#(_alpha + 0x00f6)
+   04D1 36 08               608 	ld	(hl),#0x08
+   04D3 21rF7r00            609 	ld	hl,#(_alpha + 0x00f7)
+   04D6 36 08               610 	ld	(hl),#0x08
+   04D8 21rF8r00            611 	ld	hl,#(_alpha + 0x00f8)
+   04DB 36 10               612 	ld	(hl),#0x10
+   04DD 21rF9r00            613 	ld	hl,#(_alpha + 0x00f9)
+   04E0 36 10               614 	ld	(hl),#0x10
+   04E2 21rFAr00            615 	ld	hl,#(_alpha + 0x00fa)
+   04E5 36 20               616 	ld	(hl),#0x20
+   04E7 21rFBr00            617 	ld	hl,#(_alpha + 0x00fb)
+   04EA 36 20               618 	ld	(hl),#0x20
+   04EC 21rFCr00            619 	ld	hl,#(_alpha + 0x00fc)
+   04EF 36 40               620 	ld	(hl),#0x40
+   04F1 21rFDr00            621 	ld	hl,#(_alpha + 0x00fd)
+   04F4 36 40               622 	ld	(hl),#0x40
+   04F6 01rFEr00            623 	ld	bc,#_alpha + 254
+   04F9 AF                  624 	xor	a, a
+   04FA 02                  625 	ld	(bc),a
+   04FB 01rFFr00            626 	ld	bc,#_alpha + 255
+   04FE AF                  627 	xor	a, a
+   04FF 02                  628 	ld	(bc),a
+   0500 21r00r01            629 	ld	hl,#(_alpha + 0x0100)
+   0503 36 7C               630 	ld	(hl),#0x7C
+   0505 21r01r01            631 	ld	hl,#(_alpha + 0x0101)
+   0508 36 7C               632 	ld	(hl),#0x7C
+   050A 21r02r01            633 	ld	hl,#(_alpha + 0x0102)
+   050D 36 82               634 	ld	(hl),#0x82
+   050F 21r03r01            635 	ld	hl,#(_alpha + 0x0103)
+   0512 36 82               636 	ld	(hl),#0x82
+   0514 21r04r01            637 	ld	hl,#(_alpha + 0x0104)
+   0517 36 9A               638 	ld	(hl),#0x9A
+   0519 21r05r01            639 	ld	hl,#(_alpha + 0x0105)
+   051C 36 9A               640 	ld	(hl),#0x9A
+   051E 21r06r01            641 	ld	hl,#(_alpha + 0x0106)
+   0521 36 AA               642 	ld	(hl),#0xAA
+   0523 21r07r01            643 	ld	hl,#(_alpha + 0x0107)
+   0526 36 AA               644 	ld	(hl),#0xAA
+   0528 21r08r01            645 	ld	hl,#(_alpha + 0x0108)
+   052B 36 BC               646 	ld	(hl),#0xBC
+   052D 21r09r01            647 	ld	hl,#(_alpha + 0x0109)
+   0530 36 BC               648 	ld	(hl),#0xBC
+   0532 21r0Ar01            649 	ld	hl,#(_alpha + 0x010a)
+   0535 36 80               650 	ld	(hl),#0x80
+   0537 21r0Br01            651 	ld	hl,#(_alpha + 0x010b)
+   053A 36 80               652 	ld	(hl),#0x80
+   053C 21r0Cr01            653 	ld	hl,#(_alpha + 0x010c)
+   053F 36 7C               654 	ld	(hl),#0x7C
+   0541 21r0Dr01            655 	ld	hl,#(_alpha + 0x010d)
+   0544 36 7C               656 	ld	(hl),#0x7C
+   0546 01r0Er01            657 	ld	bc,#_alpha + 270
+   0549 AF                  658 	xor	a, a
+   054A 02                  659 	ld	(bc),a
+   054B 01r0Fr01            660 	ld	bc,#_alpha + 271
+   054E AF                  661 	xor	a, a
+   054F 02                  662 	ld	(bc),a
+   0550 21r10r01            663 	ld	hl,#(_alpha + 0x0110)
+   0553 36 38               664 	ld	(hl),#0x38
+   0555 21r11r01            665 	ld	hl,#(_alpha + 0x0111)
+   0558 36 38               666 	ld	(hl),#0x38
+   055A 21r12r01            667 	ld	hl,#(_alpha + 0x0112)
+   055D 36 44               668 	ld	(hl),#0x44
+   055F 21r13r01            669 	ld	hl,#(_alpha + 0x0113)
+   0562 36 44               670 	ld	(hl),#0x44
+   0564 21r14r01            671 	ld	hl,#(_alpha + 0x0114)
+   0567 36 82               672 	ld	(hl),#0x82
+   0569 21r15r01            673 	ld	hl,#(_alpha + 0x0115)
+   056C 36 82               674 	ld	(hl),#0x82
+   056E 21r16r01            675 	ld	hl,#(_alpha + 0x0116)
+   0571 36 82               676 	ld	(hl),#0x82
+   0573 21r17r01            677 	ld	hl,#(_alpha + 0x0117)
+   0576 36 82               678 	ld	(hl),#0x82
+   0578 21r18r01            679 	ld	hl,#(_alpha + 0x0118)
+   057B 36 FE               680 	ld	(hl),#0xFE
+   057D 21r19r01            681 	ld	hl,#(_alpha + 0x0119)
+   0580 36 FE               682 	ld	(hl),#0xFE
+   0582 21r1Ar01            683 	ld	hl,#(_alpha + 0x011a)
+   0585 36 82               684 	ld	(hl),#0x82
+   0587 21r1Br01            685 	ld	hl,#(_alpha + 0x011b)
+   058A 36 82               686 	ld	(hl),#0x82
+   058C 21r1Cr01            687 	ld	hl,#(_alpha + 0x011c)
+   058F 36 82               688 	ld	(hl),#0x82
+   0591 21r1Dr01            689 	ld	hl,#(_alpha + 0x011d)
+   0594 36 82               690 	ld	(hl),#0x82
+   0596 01r1Er01            691 	ld	bc,#_alpha + 286
+   0599 AF                  692 	xor	a, a
+   059A 02                  693 	ld	(bc),a
+   059B 01r1Fr01            694 	ld	bc,#_alpha + 287
+   059E AF                  695 	xor	a, a
+   059F 02                  696 	ld	(bc),a
+   05A0 21r20r01            697 	ld	hl,#(_alpha + 0x0120)
+   05A3 36 FC               698 	ld	(hl),#0xFC
+   05A5 21r21r01            699 	ld	hl,#(_alpha + 0x0121)
+   05A8 36 FC               700 	ld	(hl),#0xFC
+   05AA 21r22r01            701 	ld	hl,#(_alpha + 0x0122)
+   05AD 36 82               702 	ld	(hl),#0x82
+   05AF 21r23r01            703 	ld	hl,#(_alpha + 0x0123)
+   05B2 36 82               704 	ld	(hl),#0x82
+   05B4 21r24r01            705 	ld	hl,#(_alpha + 0x0124)
+   05B7 36 82               706 	ld	(hl),#0x82
+   05B9 21r25r01            707 	ld	hl,#(_alpha + 0x0125)
+   05BC 36 82               708 	ld	(hl),#0x82
+   05BE 21r26r01            709 	ld	hl,#(_alpha + 0x0126)
+   05C1 36 FC               710 	ld	(hl),#0xFC
+   05C3 21r27r01            711 	ld	hl,#(_alpha + 0x0127)
+   05C6 36 FC               712 	ld	(hl),#0xFC
+   05C8 21r28r01            713 	ld	hl,#(_alpha + 0x0128)
+   05CB 36 82               714 	ld	(hl),#0x82
+   05CD 21r29r01            715 	ld	hl,#(_alpha + 0x0129)
+   05D0 36 82               716 	ld	(hl),#0x82
+   05D2 21r2Ar01            717 	ld	hl,#(_alpha + 0x012a)
+   05D5 36 82               718 	ld	(hl),#0x82
+   05D7 21r2Br01            719 	ld	hl,#(_alpha + 0x012b)
+   05DA 36 82               720 	ld	(hl),#0x82
+   05DC 21r2Cr01            721 	ld	hl,#(_alpha + 0x012c)
+   05DF 36 FC               722 	ld	(hl),#0xFC
+   05E1 21r2Dr01            723 	ld	hl,#(_alpha + 0x012d)
+   05E4 36 FC               724 	ld	(hl),#0xFC
+   05E6 01r2Er01            725 	ld	bc,#_alpha + 302
+   05E9 AF                  726 	xor	a, a
+   05EA 02                  727 	ld	(bc),a
+   05EB 01r2Fr01            728 	ld	bc,#_alpha + 303
+   05EE AF                  729 	xor	a, a
+   05EF 02                  730 	ld	(bc),a
+   05F0 21r30r01            731 	ld	hl,#(_alpha + 0x0130)
+   05F3 36 7C               732 	ld	(hl),#0x7C
+   05F5 21r31r01            733 	ld	hl,#(_alpha + 0x0131)
+   05F8 36 7C               734 	ld	(hl),#0x7C
+   05FA 21r32r01            735 	ld	hl,#(_alpha + 0x0132)
+   05FD 36 82               736 	ld	(hl),#0x82
+   05FF 21r33r01            737 	ld	hl,#(_alpha + 0x0133)
+   0602 36 82               738 	ld	(hl),#0x82
+   0604 21r34r01            739 	ld	hl,#(_alpha + 0x0134)
+   0607 36 80               740 	ld	(hl),#0x80
+   0609 21r35r01            741 	ld	hl,#(_alpha + 0x0135)
+   060C 36 80               742 	ld	(hl),#0x80
+   060E 21r36r01            743 	ld	hl,#(_alpha + 0x0136)
+   0611 36 80               744 	ld	(hl),#0x80
+   0613 21r37r01            745 	ld	hl,#(_alpha + 0x0137)
+   0616 36 80               746 	ld	(hl),#0x80
+   0618 21r38r01            747 	ld	hl,#(_alpha + 0x0138)
+   061B 36 80               748 	ld	(hl),#0x80
+   061D 21r39r01            749 	ld	hl,#(_alpha + 0x0139)
+   0620 36 80               750 	ld	(hl),#0x80
+   0622 21r3Ar01            751 	ld	hl,#(_alpha + 0x013a)
+   0625 36 82               752 	ld	(hl),#0x82
+   0627 21r3Br01            753 	ld	hl,#(_alpha + 0x013b)
+   062A 36 82               754 	ld	(hl),#0x82
+   062C 21r3Cr01            755 	ld	hl,#(_alpha + 0x013c)
+   062F 36 7C               756 	ld	(hl),#0x7C
+   0631 21r3Dr01            757 	ld	hl,#(_alpha + 0x013d)
+   0634 36 7C               758 	ld	(hl),#0x7C
+   0636 01r3Er01            759 	ld	bc,#_alpha + 318
+   0639 AF                  760 	xor	a, a
+   063A 02                  761 	ld	(bc),a
+   063B 01r3Fr01            762 	ld	bc,#_alpha + 319
+   063E AF                  763 	xor	a, a
+   063F 02                  764 	ld	(bc),a
+   0640 21r40r01            765 	ld	hl,#(_alpha + 0x0140)
+   0643 36 F8               766 	ld	(hl),#0xF8
+   0645 21r41r01            767 	ld	hl,#(_alpha + 0x0141)
+   0648 36 F8               768 	ld	(hl),#0xF8
+   064A 21r42r01            769 	ld	hl,#(_alpha + 0x0142)
+   064D 36 84               770 	ld	(hl),#0x84
+   064F 21r43r01            771 	ld	hl,#(_alpha + 0x0143)
+   0652 36 84               772 	ld	(hl),#0x84
+   0654 21r44r01            773 	ld	hl,#(_alpha + 0x0144)
+   0657 36 82               774 	ld	(hl),#0x82
+   0659 21r45r01            775 	ld	hl,#(_alpha + 0x0145)
+   065C 36 82               776 	ld	(hl),#0x82
+   065E 21r46r01            777 	ld	hl,#(_alpha + 0x0146)
+   0661 36 82               778 	ld	(hl),#0x82
+   0663 21r47r01            779 	ld	hl,#(_alpha + 0x0147)
+   0666 36 82               780 	ld	(hl),#0x82
+   0668 21r48r01            781 	ld	hl,#(_alpha + 0x0148)
+   066B 36 82               782 	ld	(hl),#0x82
+   066D 21r49r01            783 	ld	hl,#(_alpha + 0x0149)
+   0670 36 82               784 	ld	(hl),#0x82
+   0672 21r4Ar01            785 	ld	hl,#(_alpha + 0x014a)
+   0675 36 84               786 	ld	(hl),#0x84
+   0677 21r4Br01            787 	ld	hl,#(_alpha + 0x014b)
+   067A 36 84               788 	ld	(hl),#0x84
+   067C 21r4Cr01            789 	ld	hl,#(_alpha + 0x014c)
+   067F 36 F8               790 	ld	(hl),#0xF8
+   0681 21r4Dr01            791 	ld	hl,#(_alpha + 0x014d)
+   0684 36 F8               792 	ld	(hl),#0xF8
+   0686 01r4Er01            793 	ld	bc,#_alpha + 334
+   0689 AF                  794 	xor	a, a
+   068A 02                  795 	ld	(bc),a
+   068B 01r4Fr01            796 	ld	bc,#_alpha + 335
+   068E AF                  797 	xor	a, a
+   068F 02                  798 	ld	(bc),a
+   0690 21r50r01            799 	ld	hl,#(_alpha + 0x0150)
+   0693 36 FE               800 	ld	(hl),#0xFE
+   0695 21r51r01            801 	ld	hl,#(_alpha + 0x0151)
+   0698 36 FE               802 	ld	(hl),#0xFE
+   069A 21r52r01            803 	ld	hl,#(_alpha + 0x0152)
+   069D 36 80               804 	ld	(hl),#0x80
+   069F 21r53r01            805 	ld	hl,#(_alpha + 0x0153)
+   06A2 36 80               806 	ld	(hl),#0x80
+   06A4 21r54r01            807 	ld	hl,#(_alpha + 0x0154)
+   06A7 36 80               808 	ld	(hl),#0x80
+   06A9 21r55r01            809 	ld	hl,#(_alpha + 0x0155)
+   06AC 36 80               810 	ld	(hl),#0x80
+   06AE 21r56r01            811 	ld	hl,#(_alpha + 0x0156)
+   06B1 36 FC               812 	ld	(hl),#0xFC
+   06B3 21r57r01            813 	ld	hl,#(_alpha + 0x0157)
+   06B6 36 FC               814 	ld	(hl),#0xFC
+   06B8 21r58r01            815 	ld	hl,#(_alpha + 0x0158)
+   06BB 36 80               816 	ld	(hl),#0x80
+   06BD 21r59r01            817 	ld	hl,#(_alpha + 0x0159)
+   06C0 36 80               818 	ld	(hl),#0x80
+   06C2 21r5Ar01            819 	ld	hl,#(_alpha + 0x015a)
+   06C5 36 80               820 	ld	(hl),#0x80
+   06C7 21r5Br01            821 	ld	hl,#(_alpha + 0x015b)
+   06CA 36 80               822 	ld	(hl),#0x80
+   06CC 21r5Cr01            823 	ld	hl,#(_alpha + 0x015c)
+   06CF 36 FE               824 	ld	(hl),#0xFE
+   06D1 21r5Dr01            825 	ld	hl,#(_alpha + 0x015d)
+   06D4 36 FE               826 	ld	(hl),#0xFE
+   06D6 01r5Er01            827 	ld	bc,#_alpha + 350
+   06D9 AF                  828 	xor	a, a
+   06DA 02                  829 	ld	(bc),a
+   06DB 01r5Fr01            830 	ld	bc,#_alpha + 351
+   06DE AF                  831 	xor	a, a
+   06DF 02                  832 	ld	(bc),a
+   06E0 21r60r01            833 	ld	hl,#(_alpha + 0x0160)
+   06E3 36 FE               834 	ld	(hl),#0xFE
+   06E5 21r61r01            835 	ld	hl,#(_alpha + 0x0161)
+   06E8 36 FE               836 	ld	(hl),#0xFE
+   06EA 21r62r01            837 	ld	hl,#(_alpha + 0x0162)
+   06ED 36 80               838 	ld	(hl),#0x80
+   06EF 21r63r01            839 	ld	hl,#(_alpha + 0x0163)
+   06F2 36 80               840 	ld	(hl),#0x80
+   06F4 21r64r01            841 	ld	hl,#(_alpha + 0x0164)
+   06F7 36 80               842 	ld	(hl),#0x80
+   06F9 21r65r01            843 	ld	hl,#(_alpha + 0x0165)
+   06FC 36 80               844 	ld	(hl),#0x80
+   06FE 21r66r01            845 	ld	hl,#(_alpha + 0x0166)
+   0701 36 FC               846 	ld	(hl),#0xFC
+   0703 21r67r01            847 	ld	hl,#(_alpha + 0x0167)
+   0706 36 FC               848 	ld	(hl),#0xFC
+   0708 21r68r01            849 	ld	hl,#(_alpha + 0x0168)
+   070B 36 80               850 	ld	(hl),#0x80
+   070D 21r69r01            851 	ld	hl,#(_alpha + 0x0169)
+   0710 36 80               852 	ld	(hl),#0x80
+   0712 21r6Ar01            853 	ld	hl,#(_alpha + 0x016a)
+   0715 36 80               854 	ld	(hl),#0x80
+   0717 21r6Br01            855 	ld	hl,#(_alpha + 0x016b)
+   071A 36 80               856 	ld	(hl),#0x80
+   071C 21r6Cr01            857 	ld	hl,#(_alpha + 0x016c)
+   071F 36 80               858 	ld	(hl),#0x80
+   0721 21r6Dr01            859 	ld	hl,#(_alpha + 0x016d)
+   0724 36 80               860 	ld	(hl),#0x80
+   0726 01r6Er01            861 	ld	bc,#_alpha + 366
+   0729 AF                  862 	xor	a, a
+   072A 02                  863 	ld	(bc),a
+   072B 01r6Fr01            864 	ld	bc,#_alpha + 367
+   072E AF                  865 	xor	a, a
+   072F 02                  866 	ld	(bc),a
+   0730 21r70r01            867 	ld	hl,#(_alpha + 0x0170)
+   0733 36 7C               868 	ld	(hl),#0x7C
+   0735 21r71r01            869 	ld	hl,#(_alpha + 0x0171)
+   0738 36 7C               870 	ld	(hl),#0x7C
+   073A 21r72r01            871 	ld	hl,#(_alpha + 0x0172)
+   073D 36 82               872 	ld	(hl),#0x82
+   073F 21r73r01            873 	ld	hl,#(_alpha + 0x0173)
+   0742 36 82               874 	ld	(hl),#0x82
+   0744 21r74r01            875 	ld	hl,#(_alpha + 0x0174)
+   0747 36 80               876 	ld	(hl),#0x80
+   0749 21r75r01            877 	ld	hl,#(_alpha + 0x0175)
+   074C 36 80               878 	ld	(hl),#0x80
+   074E 21r76r01            879 	ld	hl,#(_alpha + 0x0176)
+   0751 36 80               880 	ld	(hl),#0x80
+   0753 21r77r01            881 	ld	hl,#(_alpha + 0x0177)
+   0756 36 80               882 	ld	(hl),#0x80
+   0758 21r78r01            883 	ld	hl,#(_alpha + 0x0178)
+   075B 36 8E               884 	ld	(hl),#0x8E
+   075D 21r79r01            885 	ld	hl,#(_alpha + 0x0179)
+   0760 36 8E               886 	ld	(hl),#0x8E
+   0762 21r7Ar01            887 	ld	hl,#(_alpha + 0x017a)
+   0765 36 82               888 	ld	(hl),#0x82
+   0767 21r7Br01            889 	ld	hl,#(_alpha + 0x017b)
+   076A 36 82               890 	ld	(hl),#0x82
+   076C 21r7Cr01            891 	ld	hl,#(_alpha + 0x017c)
+   076F 36 7E               892 	ld	(hl),#0x7E
+   0771 21r7Dr01            893 	ld	hl,#(_alpha + 0x017d)
+   0774 36 7E               894 	ld	(hl),#0x7E
+   0776 01r7Er01            895 	ld	bc,#_alpha + 382
+   0779 AF                  896 	xor	a, a
+   077A 02                  897 	ld	(bc),a
+   077B 01r7Fr01            898 	ld	bc,#_alpha + 383
+   077E AF                  899 	xor	a, a
+   077F 02                  900 	ld	(bc),a
+   0780 21r80r01            901 	ld	hl,#(_alpha + 0x0180)
+   0783 36 82               902 	ld	(hl),#0x82
+   0785 21r81r01            903 	ld	hl,#(_alpha + 0x0181)
+   0788 36 82               904 	ld	(hl),#0x82
+   078A 21r82r01            905 	ld	hl,#(_alpha + 0x0182)
+   078D 36 82               906 	ld	(hl),#0x82
+   078F 21r83r01            907 	ld	hl,#(_alpha + 0x0183)
+   0792 36 82               908 	ld	(hl),#0x82
+   0794 21r84r01            909 	ld	hl,#(_alpha + 0x0184)
+   0797 36 82               910 	ld	(hl),#0x82
+   0799 21r85r01            911 	ld	hl,#(_alpha + 0x0185)
+   079C 36 82               912 	ld	(hl),#0x82
+   079E 21r86r01            913 	ld	hl,#(_alpha + 0x0186)
+   07A1 36 FE               914 	ld	(hl),#0xFE
+   07A3 21r87r01            915 	ld	hl,#(_alpha + 0x0187)
+   07A6 36 FE               916 	ld	(hl),#0xFE
+   07A8 21r88r01            917 	ld	hl,#(_alpha + 0x0188)
+   07AB 36 82               918 	ld	(hl),#0x82
+   07AD 21r89r01            919 	ld	hl,#(_alpha + 0x0189)
+   07B0 36 82               920 	ld	(hl),#0x82
+   07B2 21r8Ar01            921 	ld	hl,#(_alpha + 0x018a)
+   07B5 36 82               922 	ld	(hl),#0x82
+   07B7 21r8Br01            923 	ld	hl,#(_alpha + 0x018b)
+   07BA 36 82               924 	ld	(hl),#0x82
+   07BC 21r8Cr01            925 	ld	hl,#(_alpha + 0x018c)
+   07BF 36 82               926 	ld	(hl),#0x82
+   07C1 21r8Dr01            927 	ld	hl,#(_alpha + 0x018d)
+   07C4 36 82               928 	ld	(hl),#0x82
+   07C6 01r8Er01            929 	ld	bc,#_alpha + 398
+   07C9 AF                  930 	xor	a, a
+   07CA 02                  931 	ld	(bc),a
+   07CB 01r8Fr01            932 	ld	bc,#_alpha + 399
+   07CE AF                  933 	xor	a, a
+   07CF 02                  934 	ld	(bc),a
+   07D0 21r90r01            935 	ld	hl,#(_alpha + 0x0190)
+   07D3 36 7C               936 	ld	(hl),#0x7C
+   07D5 21r91r01            937 	ld	hl,#(_alpha + 0x0191)
+   07D8 36 7C               938 	ld	(hl),#0x7C
+   07DA 21r92r01            939 	ld	hl,#(_alpha + 0x0192)
+   07DD 36 10               940 	ld	(hl),#0x10
+   07DF 21r93r01            941 	ld	hl,#(_alpha + 0x0193)
+   07E2 36 10               942 	ld	(hl),#0x10
+   07E4 21r94r01            943 	ld	hl,#(_alpha + 0x0194)
+   07E7 36 10               944 	ld	(hl),#0x10
+   07E9 21r95r01            945 	ld	hl,#(_alpha + 0x0195)
+   07EC 36 10               946 	ld	(hl),#0x10
+   07EE 21r96r01            947 	ld	hl,#(_alpha + 0x0196)
+   07F1 36 10               948 	ld	(hl),#0x10
+   07F3 21r97r01            949 	ld	hl,#(_alpha + 0x0197)
+   07F6 36 10               950 	ld	(hl),#0x10
+   07F8 21r98r01            951 	ld	hl,#(_alpha + 0x0198)
+   07FB 36 10               952 	ld	(hl),#0x10
+   07FD 21r99r01            953 	ld	hl,#(_alpha + 0x0199)
+   0800 36 10               954 	ld	(hl),#0x10
+   0802 21r9Ar01            955 	ld	hl,#(_alpha + 0x019a)
+   0805 36 10               956 	ld	(hl),#0x10
+   0807 21r9Br01            957 	ld	hl,#(_alpha + 0x019b)
+   080A 36 10               958 	ld	(hl),#0x10
+   080C 21r9Cr01            959 	ld	hl,#(_alpha + 0x019c)
+   080F 36 7C               960 	ld	(hl),#0x7C
+   0811 21r9Dr01            961 	ld	hl,#(_alpha + 0x019d)
+   0814 36 7C               962 	ld	(hl),#0x7C
+   0816 01r9Er01            963 	ld	bc,#_alpha + 414
+   0819 AF                  964 	xor	a, a
+   081A 02                  965 	ld	(bc),a
+   081B 01r9Fr01            966 	ld	bc,#_alpha + 415
+   081E AF                  967 	xor	a, a
+   081F 02                  968 	ld	(bc),a
+   0820 21rA0r01            969 	ld	hl,#(_alpha + 0x01a0)
+   0823 36 1E               970 	ld	(hl),#0x1E
+   0825 21rA1r01            971 	ld	hl,#(_alpha + 0x01a1)
+   0828 36 1E               972 	ld	(hl),#0x1E
+   082A 21rA2r01            973 	ld	hl,#(_alpha + 0x01a2)
+   082D 36 04               974 	ld	(hl),#0x04
+   082F 21rA3r01            975 	ld	hl,#(_alpha + 0x01a3)
+   0832 36 04               976 	ld	(hl),#0x04
+   0834 21rA4r01            977 	ld	hl,#(_alpha + 0x01a4)
+   0837 36 04               978 	ld	(hl),#0x04
+   0839 21rA5r01            979 	ld	hl,#(_alpha + 0x01a5)
+   083C 36 04               980 	ld	(hl),#0x04
+   083E 21rA6r01            981 	ld	hl,#(_alpha + 0x01a6)
+   0841 36 04               982 	ld	(hl),#0x04
+   0843 21rA7r01            983 	ld	hl,#(_alpha + 0x01a7)
+   0846 36 04               984 	ld	(hl),#0x04
+   0848 21rA8r01            985 	ld	hl,#(_alpha + 0x01a8)
+   084B 36 04               986 	ld	(hl),#0x04
+   084D 21rA9r01            987 	ld	hl,#(_alpha + 0x01a9)
+   0850 36 04               988 	ld	(hl),#0x04
+   0852 21rAAr01            989 	ld	hl,#(_alpha + 0x01aa)
+   0855 36 84               990 	ld	(hl),#0x84
+   0857 21rABr01            991 	ld	hl,#(_alpha + 0x01ab)
+   085A 36 84               992 	ld	(hl),#0x84
+   085C 21rACr01            993 	ld	hl,#(_alpha + 0x01ac)
+   085F 36 78               994 	ld	(hl),#0x78
+   0861 21rADr01            995 	ld	hl,#(_alpha + 0x01ad)
+   0864 36 78               996 	ld	(hl),#0x78
+   0866 01rAEr01            997 	ld	bc,#_alpha + 430
+   0869 AF                  998 	xor	a, a
+   086A 02                  999 	ld	(bc),a
+   086B 01rAFr01           1000 	ld	bc,#_alpha + 431
+   086E AF                 1001 	xor	a, a
+   086F 02                 1002 	ld	(bc),a
+   0870 21rB0r01           1003 	ld	hl,#(_alpha + 0x01b0)
+   0873 36 84              1004 	ld	(hl),#0x84
+   0875 21rB1r01           1005 	ld	hl,#(_alpha + 0x01b1)
+   0878 36 84              1006 	ld	(hl),#0x84
+   087A 21rB2r01           1007 	ld	hl,#(_alpha + 0x01b2)
+   087D 36 88              1008 	ld	(hl),#0x88
+   087F 21rB3r01           1009 	ld	hl,#(_alpha + 0x01b3)
+   0882 36 88              1010 	ld	(hl),#0x88
+   0884 21rB4r01           1011 	ld	hl,#(_alpha + 0x01b4)
+   0887 36 90              1012 	ld	(hl),#0x90
+   0889 21rB5r01           1013 	ld	hl,#(_alpha + 0x01b5)
+   088C 36 90              1014 	ld	(hl),#0x90
+   088E 21rB6r01           1015 	ld	hl,#(_alpha + 0x01b6)
+   0891 36 F0              1016 	ld	(hl),#0xF0
+   0893 21rB7r01           1017 	ld	hl,#(_alpha + 0x01b7)
+   0896 36 F0              1018 	ld	(hl),#0xF0
+   0898 21rB8r01           1019 	ld	hl,#(_alpha + 0x01b8)
+   089B 36 88              1020 	ld	(hl),#0x88
+   089D 21rB9r01           1021 	ld	hl,#(_alpha + 0x01b9)
+   08A0 36 88              1022 	ld	(hl),#0x88
+   08A2 21rBAr01           1023 	ld	hl,#(_alpha + 0x01ba)
+   08A5 36 84              1024 	ld	(hl),#0x84
+   08A7 21rBBr01           1025 	ld	hl,#(_alpha + 0x01bb)
+   08AA 36 84              1026 	ld	(hl),#0x84
+   08AC 21rBCr01           1027 	ld	hl,#(_alpha + 0x01bc)
+   08AF 36 82              1028 	ld	(hl),#0x82
+   08B1 21rBDr01           1029 	ld	hl,#(_alpha + 0x01bd)
+   08B4 36 82              1030 	ld	(hl),#0x82
+   08B6 01rBEr01           1031 	ld	bc,#_alpha + 446
+   08B9 AF                 1032 	xor	a, a
+   08BA 02                 1033 	ld	(bc),a
+   08BB 01rBFr01           1034 	ld	bc,#_alpha + 447
+   08BE AF                 1035 	xor	a, a
+   08BF 02                 1036 	ld	(bc),a
+   08C0 21rC0r01           1037 	ld	hl,#(_alpha + 0x01c0)
+   08C3 36 40              1038 	ld	(hl),#0x40
+   08C5 21rC1r01           1039 	ld	hl,#(_alpha + 0x01c1)
+   08C8 36 40              1040 	ld	(hl),#0x40
+   08CA 21rC2r01           1041 	ld	hl,#(_alpha + 0x01c2)
+   08CD 36 40              1042 	ld	(hl),#0x40
+   08CF 21rC3r01           1043 	ld	hl,#(_alpha + 0x01c3)
+   08D2 36 40              1044 	ld	(hl),#0x40
+   08D4 21rC4r01           1045 	ld	hl,#(_alpha + 0x01c4)
+   08D7 36 40              1046 	ld	(hl),#0x40
+   08D9 21rC5r01           1047 	ld	hl,#(_alpha + 0x01c5)
+   08DC 36 40              1048 	ld	(hl),#0x40
+   08DE 21rC6r01           1049 	ld	hl,#(_alpha + 0x01c6)
+   08E1 36 40              1050 	ld	(hl),#0x40
+   08E3 21rC7r01           1051 	ld	hl,#(_alpha + 0x01c7)
+   08E6 36 40              1052 	ld	(hl),#0x40
+   08E8 21rC8r01           1053 	ld	hl,#(_alpha + 0x01c8)
+   08EB 36 40              1054 	ld	(hl),#0x40
+   08ED 21rC9r01           1055 	ld	hl,#(_alpha + 0x01c9)
+   08F0 36 40              1056 	ld	(hl),#0x40
+   08F2 21rCAr01           1057 	ld	hl,#(_alpha + 0x01ca)
+   08F5 36 40              1058 	ld	(hl),#0x40
+   08F7 21rCBr01           1059 	ld	hl,#(_alpha + 0x01cb)
+   08FA 36 40              1060 	ld	(hl),#0x40
+   08FC 21rCCr01           1061 	ld	hl,#(_alpha + 0x01cc)
+   08FF 36 7E              1062 	ld	(hl),#0x7E
+   0901 21rCDr01           1063 	ld	hl,#(_alpha + 0x01cd)
+   0904 36 7E              1064 	ld	(hl),#0x7E
+   0906 01rCEr01           1065 	ld	bc,#_alpha + 462
+   0909 AF                 1066 	xor	a, a
+   090A 02                 1067 	ld	(bc),a
+   090B 01rCFr01           1068 	ld	bc,#_alpha + 463
+   090E AF                 1069 	xor	a, a
+   090F 02                 1070 	ld	(bc),a
+   0910 21rD0r01           1071 	ld	hl,#(_alpha + 0x01d0)
+   0913 36 82              1072 	ld	(hl),#0x82
+   0915 21rD1r01           1073 	ld	hl,#(_alpha + 0x01d1)
+   0918 36 82              1074 	ld	(hl),#0x82
+   091A 21rD2r01           1075 	ld	hl,#(_alpha + 0x01d2)
+   091D 36 C6              1076 	ld	(hl),#0xC6
+   091F 21rD3r01           1077 	ld	hl,#(_alpha + 0x01d3)
+   0922 36 C6              1078 	ld	(hl),#0xC6
+   0924 21rD4r01           1079 	ld	hl,#(_alpha + 0x01d4)
+   0927 36 AA              1080 	ld	(hl),#0xAA
+   0929 21rD5r01           1081 	ld	hl,#(_alpha + 0x01d5)
+   092C 36 AA              1082 	ld	(hl),#0xAA
+   092E 21rD6r01           1083 	ld	hl,#(_alpha + 0x01d6)
+   0931 36 92              1084 	ld	(hl),#0x92
+   0933 21rD7r01           1085 	ld	hl,#(_alpha + 0x01d7)
+   0936 36 92              1086 	ld	(hl),#0x92
+   0938 21rD8r01           1087 	ld	hl,#(_alpha + 0x01d8)
+   093B 36 82              1088 	ld	(hl),#0x82
+   093D 21rD9r01           1089 	ld	hl,#(_alpha + 0x01d9)
+   0940 36 82              1090 	ld	(hl),#0x82
+   0942 21rDAr01           1091 	ld	hl,#(_alpha + 0x01da)
+   0945 36 82              1092 	ld	(hl),#0x82
+   0947 21rDBr01           1093 	ld	hl,#(_alpha + 0x01db)
+   094A 36 82              1094 	ld	(hl),#0x82
+   094C 21rDCr01           1095 	ld	hl,#(_alpha + 0x01dc)
+   094F 36 82              1096 	ld	(hl),#0x82
+   0951 21rDDr01           1097 	ld	hl,#(_alpha + 0x01dd)
+   0954 36 82              1098 	ld	(hl),#0x82
+   0956 01rDEr01           1099 	ld	bc,#_alpha + 478
+   0959 AF                 1100 	xor	a, a
+   095A 02                 1101 	ld	(bc),a
+   095B 01rDFr01           1102 	ld	bc,#_alpha + 479
+   095E AF                 1103 	xor	a, a
+   095F 02                 1104 	ld	(bc),a
+   0960 21rE0r01           1105 	ld	hl,#(_alpha + 0x01e0)
+   0963 36 82              1106 	ld	(hl),#0x82
+   0965 21rE1r01           1107 	ld	hl,#(_alpha + 0x01e1)
+   0968 36 82              1108 	ld	(hl),#0x82
+   096A 21rE2r01           1109 	ld	hl,#(_alpha + 0x01e2)
+   096D 36 C2              1110 	ld	(hl),#0xC2
+   096F 21rE3r01           1111 	ld	hl,#(_alpha + 0x01e3)
+   0972 36 C2              1112 	ld	(hl),#0xC2
+   0974 21rE4r01           1113 	ld	hl,#(_alpha + 0x01e4)
+   0977 36 A2              1114 	ld	(hl),#0xA2
+   0979 21rE5r01           1115 	ld	hl,#(_alpha + 0x01e5)
+   097C 36 A2              1116 	ld	(hl),#0xA2
+   097E 21rE6r01           1117 	ld	hl,#(_alpha + 0x01e6)
+   0981 36 92              1118 	ld	(hl),#0x92
+   0983 21rE7r01           1119 	ld	hl,#(_alpha + 0x01e7)
+   0986 36 92              1120 	ld	(hl),#0x92
+   0988 21rE8r01           1121 	ld	hl,#(_alpha + 0x01e8)
+   098B 36 8A              1122 	ld	(hl),#0x8A
+   098D 21rE9r01           1123 	ld	hl,#(_alpha + 0x01e9)
+   0990 36 8A              1124 	ld	(hl),#0x8A
+   0992 21rEAr01           1125 	ld	hl,#(_alpha + 0x01ea)
+   0995 36 86              1126 	ld	(hl),#0x86
+   0997 21rEBr01           1127 	ld	hl,#(_alpha + 0x01eb)
+   099A 36 86              1128 	ld	(hl),#0x86
+   099C 21rECr01           1129 	ld	hl,#(_alpha + 0x01ec)
+   099F 36 82              1130 	ld	(hl),#0x82
+   09A1 21rEDr01           1131 	ld	hl,#(_alpha + 0x01ed)
+   09A4 36 82              1132 	ld	(hl),#0x82
+   09A6 01rEEr01           1133 	ld	bc,#_alpha + 494
+   09A9 AF                 1134 	xor	a, a
+   09AA 02                 1135 	ld	(bc),a
+   09AB 01rEFr01           1136 	ld	bc,#_alpha + 495
+   09AE AF                 1137 	xor	a, a
+   09AF 02                 1138 	ld	(bc),a
+   09B0 21rF0r01           1139 	ld	hl,#(_alpha + 0x01f0)
+   09B3 36 7C              1140 	ld	(hl),#0x7C
+   09B5 21rF1r01           1141 	ld	hl,#(_alpha + 0x01f1)
+   09B8 36 7C              1142 	ld	(hl),#0x7C
+   09BA 21rF2r01           1143 	ld	hl,#(_alpha + 0x01f2)
+   09BD 36 82              1144 	ld	(hl),#0x82
+   09BF 21rF3r01           1145 	ld	hl,#(_alpha + 0x01f3)
+   09C2 36 82              1146 	ld	(hl),#0x82
+   09C4 21rF4r01           1147 	ld	hl,#(_alpha + 0x01f4)
+   09C7 36 82              1148 	ld	(hl),#0x82
+   09C9 21rF5r01           1149 	ld	hl,#(_alpha + 0x01f5)
+   09CC 36 82              1150 	ld	(hl),#0x82
+   09CE 21rF6r01           1151 	ld	hl,#(_alpha + 0x01f6)
+   09D1 36 82              1152 	ld	(hl),#0x82
+   09D3 21rF7r01           1153 	ld	hl,#(_alpha + 0x01f7)
+   09D6 36 82              1154 	ld	(hl),#0x82
+   09D8 21rF8r01           1155 	ld	hl,#(_alpha + 0x01f8)
+   09DB 36 82              1156 	ld	(hl),#0x82
+   09DD 21rF9r01           1157 	ld	hl,#(_alpha + 0x01f9)
+   09E0 36 82              1158 	ld	(hl),#0x82
+   09E2 21rFAr01           1159 	ld	hl,#(_alpha + 0x01fa)
+   09E5 36 82              1160 	ld	(hl),#0x82
+   09E7 21rFBr01           1161 	ld	hl,#(_alpha + 0x01fb)
+   09EA 36 82              1162 	ld	(hl),#0x82
+   09EC 21rFCr01           1163 	ld	hl,#(_alpha + 0x01fc)
+   09EF 36 7C              1164 	ld	(hl),#0x7C
+   09F1 21rFDr01           1165 	ld	hl,#(_alpha + 0x01fd)
+   09F4 36 7C              1166 	ld	(hl),#0x7C
+   09F6 01rFEr01           1167 	ld	bc,#_alpha + 510
+   09F9 AF                 1168 	xor	a, a
+   09FA 02                 1169 	ld	(bc),a
+   09FB 01rFFr01           1170 	ld	bc,#_alpha + 511
+   09FE AF                 1171 	xor	a, a
+   09FF 02                 1172 	ld	(bc),a
+   0A00 21r00r02           1173 	ld	hl,#(_alpha + 0x0200)
+   0A03 36 FC              1174 	ld	(hl),#0xFC
+   0A05 21r01r02           1175 	ld	hl,#(_alpha + 0x0201)
+   0A08 36 FC              1176 	ld	(hl),#0xFC
+   0A0A 21r02r02           1177 	ld	hl,#(_alpha + 0x0202)
+   0A0D 36 82              1178 	ld	(hl),#0x82
+   0A0F 21r03r02           1179 	ld	hl,#(_alpha + 0x0203)
+   0A12 36 82              1180 	ld	(hl),#0x82
+   0A14 21r04r02           1181 	ld	hl,#(_alpha + 0x0204)
+   0A17 36 82              1182 	ld	(hl),#0x82
+   0A19 21r05r02           1183 	ld	hl,#(_alpha + 0x0205)
+   0A1C 36 82              1184 	ld	(hl),#0x82
+   0A1E 21r06r02           1185 	ld	hl,#(_alpha + 0x0206)
+   0A21 36 82              1186 	ld	(hl),#0x82
+   0A23 21r07r02           1187 	ld	hl,#(_alpha + 0x0207)
+   0A26 36 82              1188 	ld	(hl),#0x82
+   0A28 21r08r02           1189 	ld	hl,#(_alpha + 0x0208)
+   0A2B 36 FC              1190 	ld	(hl),#0xFC
+   0A2D 21r09r02           1191 	ld	hl,#(_alpha + 0x0209)
+   0A30 36 FC              1192 	ld	(hl),#0xFC
+   0A32 21r0Ar02           1193 	ld	hl,#(_alpha + 0x020a)
+   0A35 36 80              1194 	ld	(hl),#0x80
+   0A37 21r0Br02           1195 	ld	hl,#(_alpha + 0x020b)
+   0A3A 36 80              1196 	ld	(hl),#0x80
+   0A3C 21r0Cr02           1197 	ld	hl,#(_alpha + 0x020c)
+   0A3F 36 80              1198 	ld	(hl),#0x80
+   0A41 21r0Dr02           1199 	ld	hl,#(_alpha + 0x020d)
+   0A44 36 80              1200 	ld	(hl),#0x80
+   0A46 01r0Er02           1201 	ld	bc,#_alpha + 526
+   0A49 AF                 1202 	xor	a, a
+   0A4A 02                 1203 	ld	(bc),a
+   0A4B 01r0Fr02           1204 	ld	bc,#_alpha + 527
+   0A4E AF                 1205 	xor	a, a
+   0A4F 02                 1206 	ld	(bc),a
+   0A50 21r10r02           1207 	ld	hl,#(_alpha + 0x0210)
+   0A53 36 7C              1208 	ld	(hl),#0x7C
+   0A55 21r11r02           1209 	ld	hl,#(_alpha + 0x0211)
+   0A58 36 7C              1210 	ld	(hl),#0x7C
+   0A5A 21r12r02           1211 	ld	hl,#(_alpha + 0x0212)
+   0A5D 36 82              1212 	ld	(hl),#0x82
+   0A5F 21r13r02           1213 	ld	hl,#(_alpha + 0x0213)
+   0A62 36 82              1214 	ld	(hl),#0x82
+   0A64 21r14r02           1215 	ld	hl,#(_alpha + 0x0214)
+   0A67 36 82              1216 	ld	(hl),#0x82
+   0A69 21r15r02           1217 	ld	hl,#(_alpha + 0x0215)
+   0A6C 36 82              1218 	ld	(hl),#0x82
+   0A6E 21r16r02           1219 	ld	hl,#(_alpha + 0x0216)
+   0A71 36 92              1220 	ld	(hl),#0x92
+   0A73 21r17r02           1221 	ld	hl,#(_alpha + 0x0217)
+   0A76 36 92              1222 	ld	(hl),#0x92
+   0A78 21r18r02           1223 	ld	hl,#(_alpha + 0x0218)
+   0A7B 36 8A              1224 	ld	(hl),#0x8A
+   0A7D 21r19r02           1225 	ld	hl,#(_alpha + 0x0219)
+   0A80 36 8A              1226 	ld	(hl),#0x8A
+   0A82 21r1Ar02           1227 	ld	hl,#(_alpha + 0x021a)
+   0A85 36 84              1228 	ld	(hl),#0x84
+   0A87 21r1Br02           1229 	ld	hl,#(_alpha + 0x021b)
+   0A8A 36 84              1230 	ld	(hl),#0x84
+   0A8C 21r1Cr02           1231 	ld	hl,#(_alpha + 0x021c)
+   0A8F 36 7A              1232 	ld	(hl),#0x7A
+   0A91 21r1Dr02           1233 	ld	hl,#(_alpha + 0x021d)
+   0A94 36 7A              1234 	ld	(hl),#0x7A
+   0A96 01r1Er02           1235 	ld	bc,#_alpha + 542
+   0A99 AF                 1236 	xor	a, a
+   0A9A 02                 1237 	ld	(bc),a
+   0A9B 01r1Fr02           1238 	ld	bc,#_alpha + 543
+   0A9E AF                 1239 	xor	a, a
+   0A9F 02                 1240 	ld	(bc),a
+   0AA0 21r20r02           1241 	ld	hl,#(_alpha + 0x0220)
+   0AA3 36 FC              1242 	ld	(hl),#0xFC
+   0AA5 21r21r02           1243 	ld	hl,#(_alpha + 0x0221)
+   0AA8 36 FC              1244 	ld	(hl),#0xFC
+   0AAA 21r22r02           1245 	ld	hl,#(_alpha + 0x0222)
+   0AAD 36 82              1246 	ld	(hl),#0x82
+   0AAF 21r23r02           1247 	ld	hl,#(_alpha + 0x0223)
+   0AB2 36 82              1248 	ld	(hl),#0x82
+   0AB4 21r24r02           1249 	ld	hl,#(_alpha + 0x0224)
+   0AB7 36 82              1250 	ld	(hl),#0x82
+   0AB9 21r25r02           1251 	ld	hl,#(_alpha + 0x0225)
+   0ABC 36 82              1252 	ld	(hl),#0x82
+   0ABE 21r26r02           1253 	ld	hl,#(_alpha + 0x0226)
+   0AC1 36 84              1254 	ld	(hl),#0x84
+   0AC3 21r27r02           1255 	ld	hl,#(_alpha + 0x0227)
+   0AC6 36 84              1256 	ld	(hl),#0x84
+   0AC8 21r28r02           1257 	ld	hl,#(_alpha + 0x0228)
+   0ACB 36 F8              1258 	ld	(hl),#0xF8
+   0ACD 21r29r02           1259 	ld	hl,#(_alpha + 0x0229)
+   0AD0 36 F8              1260 	ld	(hl),#0xF8
+   0AD2 21r2Ar02           1261 	ld	hl,#(_alpha + 0x022a)
+   0AD5 36 84              1262 	ld	(hl),#0x84
+   0AD7 21r2Br02           1263 	ld	hl,#(_alpha + 0x022b)
+   0ADA 36 84              1264 	ld	(hl),#0x84
+   0ADC 21r2Cr02           1265 	ld	hl,#(_alpha + 0x022c)
+   0ADF 36 82              1266 	ld	(hl),#0x82
+   0AE1 21r2Dr02           1267 	ld	hl,#(_alpha + 0x022d)
+   0AE4 36 82              1268 	ld	(hl),#0x82
+   0AE6 01r2Er02           1269 	ld	bc,#_alpha + 558
+   0AE9 AF                 1270 	xor	a, a
+   0AEA 02                 1271 	ld	(bc),a
+   0AEB 01r2Fr02           1272 	ld	bc,#_alpha + 559
+   0AEE AF                 1273 	xor	a, a
+   0AEF 02                 1274 	ld	(bc),a
+   0AF0 21r30r02           1275 	ld	hl,#(_alpha + 0x0230)
+   0AF3 36 7C              1276 	ld	(hl),#0x7C
+   0AF5 21r31r02           1277 	ld	hl,#(_alpha + 0x0231)
+   0AF8 36 7C              1278 	ld	(hl),#0x7C
+   0AFA 21r32r02           1279 	ld	hl,#(_alpha + 0x0232)
+   0AFD 36 80              1280 	ld	(hl),#0x80
+   0AFF 21r33r02           1281 	ld	hl,#(_alpha + 0x0233)
+   0B02 36 80              1282 	ld	(hl),#0x80
+   0B04 21r34r02           1283 	ld	hl,#(_alpha + 0x0234)
+   0B07 36 80              1284 	ld	(hl),#0x80
+   0B09 21r35r02           1285 	ld	hl,#(_alpha + 0x0235)
+   0B0C 36 80              1286 	ld	(hl),#0x80
+   0B0E 21r36r02           1287 	ld	hl,#(_alpha + 0x0236)
+   0B11 36 7C              1288 	ld	(hl),#0x7C
+   0B13 21r37r02           1289 	ld	hl,#(_alpha + 0x0237)
+   0B16 36 7C              1290 	ld	(hl),#0x7C
+   0B18 21r38r02           1291 	ld	hl,#(_alpha + 0x0238)
+   0B1B 36 02              1292 	ld	(hl),#0x02
+   0B1D 21r39r02           1293 	ld	hl,#(_alpha + 0x0239)
+   0B20 36 02              1294 	ld	(hl),#0x02
+   0B22 21r3Ar02           1295 	ld	hl,#(_alpha + 0x023a)
+   0B25 36 02              1296 	ld	(hl),#0x02
+   0B27 21r3Br02           1297 	ld	hl,#(_alpha + 0x023b)
+   0B2A 36 02              1298 	ld	(hl),#0x02
+   0B2C 21r3Cr02           1299 	ld	hl,#(_alpha + 0x023c)
+   0B2F 36 FC              1300 	ld	(hl),#0xFC
+   0B31 21r3Dr02           1301 	ld	hl,#(_alpha + 0x023d)
+   0B34 36 FC              1302 	ld	(hl),#0xFC
+   0B36 01r3Er02           1303 	ld	bc,#_alpha + 574
+   0B39 AF                 1304 	xor	a, a
+   0B3A 02                 1305 	ld	(bc),a
+   0B3B 01r3Fr02           1306 	ld	bc,#_alpha + 575
+   0B3E AF                 1307 	xor	a, a
+   0B3F 02                 1308 	ld	(bc),a
+   0B40 21r40r02           1309 	ld	hl,#(_alpha + 0x0240)
+   0B43 36 FE              1310 	ld	(hl),#0xFE
+   0B45 21r41r02           1311 	ld	hl,#(_alpha + 0x0241)
+   0B48 36 FE              1312 	ld	(hl),#0xFE
+   0B4A 21r42r02           1313 	ld	hl,#(_alpha + 0x0242)
+   0B4D 36 10              1314 	ld	(hl),#0x10
+   0B4F 21r43r02           1315 	ld	hl,#(_alpha + 0x0243)
+   0B52 36 10              1316 	ld	(hl),#0x10
+   0B54 21r44r02           1317 	ld	hl,#(_alpha + 0x0244)
+   0B57 36 10              1318 	ld	(hl),#0x10
+   0B59 21r45r02           1319 	ld	hl,#(_alpha + 0x0245)
+   0B5C 36 10              1320 	ld	(hl),#0x10
+   0B5E 21r46r02           1321 	ld	hl,#(_alpha + 0x0246)
+   0B61 36 10              1322 	ld	(hl),#0x10
+   0B63 21r47r02           1323 	ld	hl,#(_alpha + 0x0247)
+   0B66 36 10              1324 	ld	(hl),#0x10
+   0B68 21r48r02           1325 	ld	hl,#(_alpha + 0x0248)
+   0B6B 36 10              1326 	ld	(hl),#0x10
+   0B6D 21r49r02           1327 	ld	hl,#(_alpha + 0x0249)
+   0B70 36 10              1328 	ld	(hl),#0x10
+   0B72 21r4Ar02           1329 	ld	hl,#(_alpha + 0x024a)
+   0B75 36 10              1330 	ld	(hl),#0x10
+   0B77 21r4Br02           1331 	ld	hl,#(_alpha + 0x024b)
+   0B7A 36 10              1332 	ld	(hl),#0x10
+   0B7C 21r4Cr02           1333 	ld	hl,#(_alpha + 0x024c)
+   0B7F 36 10              1334 	ld	(hl),#0x10
+   0B81 21r4Dr02           1335 	ld	hl,#(_alpha + 0x024d)
+   0B84 36 10              1336 	ld	(hl),#0x10
+   0B86 01r4Er02           1337 	ld	bc,#_alpha + 590
+   0B89 AF                 1338 	xor	a, a
+   0B8A 02                 1339 	ld	(bc),a
+   0B8B 01r4Fr02           1340 	ld	bc,#_alpha + 591
+   0B8E AF                 1341 	xor	a, a
+   0B8F 02                 1342 	ld	(bc),a
+   0B90 21r50r02           1343 	ld	hl,#(_alpha + 0x0250)
+   0B93 36 82              1344 	ld	(hl),#0x82
+   0B95 21r51r02           1345 	ld	hl,#(_alpha + 0x0251)
+   0B98 36 82              1346 	ld	(hl),#0x82
+   0B9A 21r52r02           1347 	ld	hl,#(_alpha + 0x0252)
+   0B9D 36 82              1348 	ld	(hl),#0x82
+   0B9F 21r53r02           1349 	ld	hl,#(_alpha + 0x0253)
+   0BA2 36 82              1350 	ld	(hl),#0x82
+   0BA4 21r54r02           1351 	ld	hl,#(_alpha + 0x0254)
+   0BA7 36 82              1352 	ld	(hl),#0x82
+   0BA9 21r55r02           1353 	ld	hl,#(_alpha + 0x0255)
+   0BAC 36 82              1354 	ld	(hl),#0x82
+   0BAE 21r56r02           1355 	ld	hl,#(_alpha + 0x0256)
+   0BB1 36 82              1356 	ld	(hl),#0x82
+   0BB3 21r57r02           1357 	ld	hl,#(_alpha + 0x0257)
+   0BB6 36 82              1358 	ld	(hl),#0x82
+   0BB8 21r58r02           1359 	ld	hl,#(_alpha + 0x0258)
+   0BBB 36 82              1360 	ld	(hl),#0x82
+   0BBD 21r59r02           1361 	ld	hl,#(_alpha + 0x0259)
+   0BC0 36 82              1362 	ld	(hl),#0x82
+   0BC2 21r5Ar02           1363 	ld	hl,#(_alpha + 0x025a)
+   0BC5 36 82              1364 	ld	(hl),#0x82
+   0BC7 21r5Br02           1365 	ld	hl,#(_alpha + 0x025b)
+   0BCA 36 82              1366 	ld	(hl),#0x82
+   0BCC 21r5Cr02           1367 	ld	hl,#(_alpha + 0x025c)
+   0BCF 36 7C              1368 	ld	(hl),#0x7C
+   0BD1 21r5Dr02           1369 	ld	hl,#(_alpha + 0x025d)
+   0BD4 36 7C              1370 	ld	(hl),#0x7C
+   0BD6 01r5Er02           1371 	ld	bc,#_alpha + 606
+   0BD9 AF                 1372 	xor	a, a
+   0BDA 02                 1373 	ld	(bc),a
+   0BDB 01r5Fr02           1374 	ld	bc,#_alpha + 607
+   0BDE AF                 1375 	xor	a, a
+   0BDF 02                 1376 	ld	(bc),a
+   0BE0 21r60r02           1377 	ld	hl,#(_alpha + 0x0260)
+   0BE3 36 82              1378 	ld	(hl),#0x82
+   0BE5 21r61r02           1379 	ld	hl,#(_alpha + 0x0261)
+   0BE8 36 82              1380 	ld	(hl),#0x82
+   0BEA 21r62r02           1381 	ld	hl,#(_alpha + 0x0262)
+   0BED 36 82              1382 	ld	(hl),#0x82
+   0BEF 21r63r02           1383 	ld	hl,#(_alpha + 0x0263)
+   0BF2 36 82              1384 	ld	(hl),#0x82
+   0BF4 21r64r02           1385 	ld	hl,#(_alpha + 0x0264)
+   0BF7 36 82              1386 	ld	(hl),#0x82
+   0BF9 21r65r02           1387 	ld	hl,#(_alpha + 0x0265)
+   0BFC 36 82              1388 	ld	(hl),#0x82
+   0BFE 21r66r02           1389 	ld	hl,#(_alpha + 0x0266)
+   0C01 36 82              1390 	ld	(hl),#0x82
+   0C03 21r67r02           1391 	ld	hl,#(_alpha + 0x0267)
+   0C06 36 82              1392 	ld	(hl),#0x82
+   0C08 21r68r02           1393 	ld	hl,#(_alpha + 0x0268)
+   0C0B 36 44              1394 	ld	(hl),#0x44
+   0C0D 21r69r02           1395 	ld	hl,#(_alpha + 0x0269)
+   0C10 36 44              1396 	ld	(hl),#0x44
+   0C12 21r6Ar02           1397 	ld	hl,#(_alpha + 0x026a)
+   0C15 36 28              1398 	ld	(hl),#0x28
+   0C17 21r6Br02           1399 	ld	hl,#(_alpha + 0x026b)
+   0C1A 36 28              1400 	ld	(hl),#0x28
+   0C1C 21r6Cr02           1401 	ld	hl,#(_alpha + 0x026c)
+   0C1F 36 10              1402 	ld	(hl),#0x10
+   0C21 21r6Dr02           1403 	ld	hl,#(_alpha + 0x026d)
+   0C24 36 10              1404 	ld	(hl),#0x10
+   0C26 01r6Er02           1405 	ld	bc,#_alpha + 622
+   0C29 AF                 1406 	xor	a, a
+   0C2A 02                 1407 	ld	(bc),a
+   0C2B 01r6Fr02           1408 	ld	bc,#_alpha + 623
+   0C2E AF                 1409 	xor	a, a
+   0C2F 02                 1410 	ld	(bc),a
+   0C30 21r70r02           1411 	ld	hl,#(_alpha + 0x0270)
+   0C33 36 82              1412 	ld	(hl),#0x82
+   0C35 21r71r02           1413 	ld	hl,#(_alpha + 0x0271)
+   0C38 36 82              1414 	ld	(hl),#0x82
+   0C3A 21r72r02           1415 	ld	hl,#(_alpha + 0x0272)
+   0C3D 36 82              1416 	ld	(hl),#0x82
+   0C3F 21r73r02           1417 	ld	hl,#(_alpha + 0x0273)
+   0C42 36 82              1418 	ld	(hl),#0x82
+   0C44 21r74r02           1419 	ld	hl,#(_alpha + 0x0274)
+   0C47 36 82              1420 	ld	(hl),#0x82
+   0C49 21r75r02           1421 	ld	hl,#(_alpha + 0x0275)
+   0C4C 36 82              1422 	ld	(hl),#0x82
+   0C4E 21r76r02           1423 	ld	hl,#(_alpha + 0x0276)
+   0C51 36 92              1424 	ld	(hl),#0x92
+   0C53 21r77r02           1425 	ld	hl,#(_alpha + 0x0277)
+   0C56 36 92              1426 	ld	(hl),#0x92
+   0C58 21r78r02           1427 	ld	hl,#(_alpha + 0x0278)
+   0C5B 36 AA              1428 	ld	(hl),#0xAA
+   0C5D 21r79r02           1429 	ld	hl,#(_alpha + 0x0279)
+   0C60 36 AA              1430 	ld	(hl),#0xAA
+   0C62 21r7Ar02           1431 	ld	hl,#(_alpha + 0x027a)
+   0C65 36 C6              1432 	ld	(hl),#0xC6
+   0C67 21r7Br02           1433 	ld	hl,#(_alpha + 0x027b)
+   0C6A 36 C6              1434 	ld	(hl),#0xC6
+   0C6C 21r7Cr02           1435 	ld	hl,#(_alpha + 0x027c)
+   0C6F 36 82              1436 	ld	(hl),#0x82
+   0C71 21r7Dr02           1437 	ld	hl,#(_alpha + 0x027d)
+   0C74 36 82              1438 	ld	(hl),#0x82
+   0C76 01r7Er02           1439 	ld	bc,#_alpha + 638
+   0C79 AF                 1440 	xor	a, a
+   0C7A 02                 1441 	ld	(bc),a
+   0C7B 01r7Fr02           1442 	ld	bc,#_alpha + 639
+   0C7E AF                 1443 	xor	a, a
+   0C7F 02                 1444 	ld	(bc),a
+   0C80 21r80r02           1445 	ld	hl,#(_alpha + 0x0280)
+   0C83 36 82              1446 	ld	(hl),#0x82
+   0C85 21r81r02           1447 	ld	hl,#(_alpha + 0x0281)
+   0C88 36 82              1448 	ld	(hl),#0x82
+   0C8A 21r82r02           1449 	ld	hl,#(_alpha + 0x0282)
+   0C8D 36 44              1450 	ld	(hl),#0x44
+   0C8F 21r83r02           1451 	ld	hl,#(_alpha + 0x0283)
+   0C92 36 44              1452 	ld	(hl),#0x44
+   0C94 21r84r02           1453 	ld	hl,#(_alpha + 0x0284)
+   0C97 36 28              1454 	ld	(hl),#0x28
+   0C99 21r85r02           1455 	ld	hl,#(_alpha + 0x0285)
+   0C9C 36 28              1456 	ld	(hl),#0x28
+   0C9E 21r86r02           1457 	ld	hl,#(_alpha + 0x0286)
+   0CA1 36 10              1458 	ld	(hl),#0x10
+   0CA3 21r87r02           1459 	ld	hl,#(_alpha + 0x0287)
+   0CA6 36 10              1460 	ld	(hl),#0x10
+   0CA8 21r88r02           1461 	ld	hl,#(_alpha + 0x0288)
+   0CAB 36 28              1462 	ld	(hl),#0x28
+   0CAD 21r89r02           1463 	ld	hl,#(_alpha + 0x0289)
+   0CB0 36 28              1464 	ld	(hl),#0x28
+   0CB2 21r8Ar02           1465 	ld	hl,#(_alpha + 0x028a)
+   0CB5 36 44              1466 	ld	(hl),#0x44
+   0CB7 21r8Br02           1467 	ld	hl,#(_alpha + 0x028b)
+   0CBA 36 44              1468 	ld	(hl),#0x44
+   0CBC 21r8Cr02           1469 	ld	hl,#(_alpha + 0x028c)
+   0CBF 36 82              1470 	ld	(hl),#0x82
+   0CC1 21r8Dr02           1471 	ld	hl,#(_alpha + 0x028d)
+   0CC4 36 82              1472 	ld	(hl),#0x82
+   0CC6 01r8Er02           1473 	ld	bc,#_alpha + 654
+   0CC9 AF                 1474 	xor	a, a
+   0CCA 02                 1475 	ld	(bc),a
+   0CCB 01r8Fr02           1476 	ld	bc,#_alpha + 655
+   0CCE AF                 1477 	xor	a, a
+   0CCF 02                 1478 	ld	(bc),a
+   0CD0 21r90r02           1479 	ld	hl,#(_alpha + 0x0290)
+   0CD3 36 82              1480 	ld	(hl),#0x82
+   0CD5 21r91r02           1481 	ld	hl,#(_alpha + 0x0291)
+   0CD8 36 82              1482 	ld	(hl),#0x82
+   0CDA 21r92r02           1483 	ld	hl,#(_alpha + 0x0292)
+   0CDD 36 44              1484 	ld	(hl),#0x44
+   0CDF 21r93r02           1485 	ld	hl,#(_alpha + 0x0293)
+   0CE2 36 44              1486 	ld	(hl),#0x44
+   0CE4 21r94r02           1487 	ld	hl,#(_alpha + 0x0294)
+   0CE7 36 28              1488 	ld	(hl),#0x28
+   0CE9 21r95r02           1489 	ld	hl,#(_alpha + 0x0295)
+   0CEC 36 28              1490 	ld	(hl),#0x28
+   0CEE 21r96r02           1491 	ld	hl,#(_alpha + 0x0296)
+   0CF1 36 10              1492 	ld	(hl),#0x10
+   0CF3 21r97r02           1493 	ld	hl,#(_alpha + 0x0297)
+   0CF6 36 10              1494 	ld	(hl),#0x10
+   0CF8 21r98r02           1495 	ld	hl,#(_alpha + 0x0298)
+   0CFB 36 10              1496 	ld	(hl),#0x10
+   0CFD 21r99r02           1497 	ld	hl,#(_alpha + 0x0299)
+   0D00 36 10              1498 	ld	(hl),#0x10
+   0D02 21r9Ar02           1499 	ld	hl,#(_alpha + 0x029a)
+   0D05 36 10              1500 	ld	(hl),#0x10
+   0D07 21r9Br02           1501 	ld	hl,#(_alpha + 0x029b)
+   0D0A 36 10              1502 	ld	(hl),#0x10
+   0D0C 21r9Cr02           1503 	ld	hl,#(_alpha + 0x029c)
+   0D0F 36 10              1504 	ld	(hl),#0x10
+   0D11 21r9Dr02           1505 	ld	hl,#(_alpha + 0x029d)
+   0D14 36 10              1506 	ld	(hl),#0x10
+   0D16 01r9Er02           1507 	ld	bc,#_alpha + 670
+   0D19 AF                 1508 	xor	a, a
+   0D1A 02                 1509 	ld	(bc),a
+   0D1B 01r9Fr02           1510 	ld	bc,#_alpha + 671
+   0D1E AF                 1511 	xor	a, a
+   0D1F 02                 1512 	ld	(bc),a
+   0D20 21rA0r02           1513 	ld	hl,#(_alpha + 0x02a0)
+   0D23 36 FE              1514 	ld	(hl),#0xFE
+   0D25 21rA1r02           1515 	ld	hl,#(_alpha + 0x02a1)
+   0D28 36 FE              1516 	ld	(hl),#0xFE
+   0D2A 21rA2r02           1517 	ld	hl,#(_alpha + 0x02a2)
+   0D2D 36 04              1518 	ld	(hl),#0x04
+   0D2F 21rA3r02           1519 	ld	hl,#(_alpha + 0x02a3)
+   0D32 36 04              1520 	ld	(hl),#0x04
+   0D34 21rA4r02           1521 	ld	hl,#(_alpha + 0x02a4)
+   0D37 36 08              1522 	ld	(hl),#0x08
+   0D39 21rA5r02           1523 	ld	hl,#(_alpha + 0x02a5)
+   0D3C 36 08              1524 	ld	(hl),#0x08
+   0D3E 21rA6r02           1525 	ld	hl,#(_alpha + 0x02a6)
+   0D41 36 10              1526 	ld	(hl),#0x10
+   0D43 21rA7r02           1527 	ld	hl,#(_alpha + 0x02a7)
+   0D46 36 10              1528 	ld	(hl),#0x10
+   0D48 21rA8r02           1529 	ld	hl,#(_alpha + 0x02a8)
+   0D4B 36 20              1530 	ld	(hl),#0x20
+   0D4D 21rA9r02           1531 	ld	hl,#(_alpha + 0x02a9)
+   0D50 36 20              1532 	ld	(hl),#0x20
+   0D52 21rAAr02           1533 	ld	hl,#(_alpha + 0x02aa)
+   0D55 36 40              1534 	ld	(hl),#0x40
+   0D57 21rABr02           1535 	ld	hl,#(_alpha + 0x02ab)
+   0D5A 36 40              1536 	ld	(hl),#0x40
+   0D5C 21rACr02           1537 	ld	hl,#(_alpha + 0x02ac)
+   0D5F 36 FE              1538 	ld	(hl),#0xFE
+   0D61 21rADr02           1539 	ld	hl,#(_alpha + 0x02ad)
+   0D64 36 FE              1540 	ld	(hl),#0xFE
+   0D66 01rAEr02           1541 	ld	bc,#_alpha + 686
+   0D69 AF                 1542 	xor	a, a
+   0D6A 02                 1543 	ld	(bc),a
+   0D6B 01rAFr02           1544 	ld	bc,#_alpha + 687
+   0D6E AF                 1545 	xor	a, a
+   0D6F 02                 1546 	ld	(bc),a
+   0D70 21rB0r02           1547 	ld	hl,#(_alpha + 0x02b0)
+   0D73 36 1C              1548 	ld	(hl),#0x1C
+   0D75 21rB1r02           1549 	ld	hl,#(_alpha + 0x02b1)
+   0D78 36 1C              1550 	ld	(hl),#0x1C
+   0D7A 21rB2r02           1551 	ld	hl,#(_alpha + 0x02b2)
+   0D7D 36 10              1552 	ld	(hl),#0x10
+   0D7F 21rB3r02           1553 	ld	hl,#(_alpha + 0x02b3)
+   0D82 36 10              1554 	ld	(hl),#0x10
+   0D84 21rB4r02           1555 	ld	hl,#(_alpha + 0x02b4)
+   0D87 36 10              1556 	ld	(hl),#0x10
+   0D89 21rB5r02           1557 	ld	hl,#(_alpha + 0x02b5)
+   0D8C 36 10              1558 	ld	(hl),#0x10
+   0D8E 21rB6r02           1559 	ld	hl,#(_alpha + 0x02b6)
+   0D91 36 10              1560 	ld	(hl),#0x10
+   0D93 21rB7r02           1561 	ld	hl,#(_alpha + 0x02b7)
+   0D96 36 10              1562 	ld	(hl),#0x10
+   0D98 21rB8r02           1563 	ld	hl,#(_alpha + 0x02b8)
+   0D9B 36 10              1564 	ld	(hl),#0x10
+   0D9D 21rB9r02           1565 	ld	hl,#(_alpha + 0x02b9)
+   0DA0 36 10              1566 	ld	(hl),#0x10
+   0DA2 21rBAr02           1567 	ld	hl,#(_alpha + 0x02ba)
+   0DA5 36 10              1568 	ld	(hl),#0x10
+   0DA7 21rBBr02           1569 	ld	hl,#(_alpha + 0x02bb)
+   0DAA 36 10              1570 	ld	(hl),#0x10
+   0DAC 21rBCr02           1571 	ld	hl,#(_alpha + 0x02bc)
+   0DAF 36 1C              1572 	ld	(hl),#0x1C
+   0DB1 21rBDr02           1573 	ld	hl,#(_alpha + 0x02bd)
+   0DB4 36 1C              1574 	ld	(hl),#0x1C
+   0DB6 01rBEr02           1575 	ld	bc,#_alpha + 702
+   0DB9 AF                 1576 	xor	a, a
+   0DBA 02                 1577 	ld	(bc),a
+   0DBB 01rBFr02           1578 	ld	bc,#_alpha + 703
+   0DBE AF                 1579 	xor	a, a
+   0DBF 02                 1580 	ld	(bc),a
+   0DC0 21rC0r02           1581 	ld	hl,#(_alpha + 0x02c0)
+   0DC3 36 80              1582 	ld	(hl),#0x80
+   0DC5 21rC1r02           1583 	ld	hl,#(_alpha + 0x02c1)
+   0DC8 36 80              1584 	ld	(hl),#0x80
+   0DCA 21rC2r02           1585 	ld	hl,#(_alpha + 0x02c2)
+   0DCD 36 40              1586 	ld	(hl),#0x40
+   0DCF 21rC3r02           1587 	ld	hl,#(_alpha + 0x02c3)
+   0DD2 36 40              1588 	ld	(hl),#0x40
+   0DD4 21rC4r02           1589 	ld	hl,#(_alpha + 0x02c4)
+   0DD7 36 20              1590 	ld	(hl),#0x20
+   0DD9 21rC5r02           1591 	ld	hl,#(_alpha + 0x02c5)
+   0DDC 36 20              1592 	ld	(hl),#0x20
+   0DDE 21rC6r02           1593 	ld	hl,#(_alpha + 0x02c6)
+   0DE1 36 10              1594 	ld	(hl),#0x10
+   0DE3 21rC7r02           1595 	ld	hl,#(_alpha + 0x02c7)
+   0DE6 36 10              1596 	ld	(hl),#0x10
+   0DE8 21rC8r02           1597 	ld	hl,#(_alpha + 0x02c8)
+   0DEB 36 08              1598 	ld	(hl),#0x08
+   0DED 21rC9r02           1599 	ld	hl,#(_alpha + 0x02c9)
+   0DF0 36 08              1600 	ld	(hl),#0x08
+   0DF2 21rCAr02           1601 	ld	hl,#(_alpha + 0x02ca)
+   0DF5 36 04              1602 	ld	(hl),#0x04
+   0DF7 21rCBr02           1603 	ld	hl,#(_alpha + 0x02cb)
+   0DFA 36 04              1604 	ld	(hl),#0x04
+   0DFC 21rCCr02           1605 	ld	hl,#(_alpha + 0x02cc)
+   0DFF 36 02              1606 	ld	(hl),#0x02
+   0E01 21rCDr02           1607 	ld	hl,#(_alpha + 0x02cd)
+   0E04 36 02              1608 	ld	(hl),#0x02
+   0E06 01rCEr02           1609 	ld	bc,#_alpha + 718
+   0E09 AF                 1610 	xor	a, a
+   0E0A 02                 1611 	ld	(bc),a
+   0E0B 01rCFr02           1612 	ld	bc,#_alpha + 719
+   0E0E AF                 1613 	xor	a, a
+   0E0F 02                 1614 	ld	(bc),a
+   0E10 21rD0r02           1615 	ld	hl,#(_alpha + 0x02d0)
+   0E13 36 70              1616 	ld	(hl),#0x70
+   0E15 21rD1r02           1617 	ld	hl,#(_alpha + 0x02d1)
+   0E18 36 70              1618 	ld	(hl),#0x70
+   0E1A 21rD2r02           1619 	ld	hl,#(_alpha + 0x02d2)
+   0E1D 36 10              1620 	ld	(hl),#0x10
+   0E1F 21rD3r02           1621 	ld	hl,#(_alpha + 0x02d3)
+   0E22 36 10              1622 	ld	(hl),#0x10
+   0E24 21rD4r02           1623 	ld	hl,#(_alpha + 0x02d4)
+   0E27 36 10              1624 	ld	(hl),#0x10
+   0E29 21rD5r02           1625 	ld	hl,#(_alpha + 0x02d5)
+   0E2C 36 10              1626 	ld	(hl),#0x10
+   0E2E 21rD6r02           1627 	ld	hl,#(_alpha + 0x02d6)
+   0E31 36 10              1628 	ld	(hl),#0x10
+   0E33 21rD7r02           1629 	ld	hl,#(_alpha + 0x02d7)
+   0E36 36 10              1630 	ld	(hl),#0x10
+   0E38 21rD8r02           1631 	ld	hl,#(_alpha + 0x02d8)
+   0E3B 36 10              1632 	ld	(hl),#0x10
+   0E3D 21rD9r02           1633 	ld	hl,#(_alpha + 0x02d9)
+   0E40 36 10              1634 	ld	(hl),#0x10
+   0E42 21rDAr02           1635 	ld	hl,#(_alpha + 0x02da)
+   0E45 36 10              1636 	ld	(hl),#0x10
+   0E47 21rDBr02           1637 	ld	hl,#(_alpha + 0x02db)
+   0E4A 36 10              1638 	ld	(hl),#0x10
+   0E4C 21rDCr02           1639 	ld	hl,#(_alpha + 0x02dc)
+   0E4F 36 70              1640 	ld	(hl),#0x70
+   0E51 21rDDr02           1641 	ld	hl,#(_alpha + 0x02dd)
+   0E54 36 70              1642 	ld	(hl),#0x70
+   0E56 01rDEr02           1643 	ld	bc,#_alpha + 734
+   0E59 AF                 1644 	xor	a, a
+   0E5A 02                 1645 	ld	(bc),a
+   0E5B 01rDFr02           1646 	ld	bc,#_alpha + 735
+   0E5E AF                 1647 	xor	a, a
+   0E5F 02                 1648 	ld	(bc),a
+   0E60 21rE0r02           1649 	ld	hl,#(_alpha + 0x02e0)
+   0E63 36 10              1650 	ld	(hl),#0x10
+   0E65 21rE1r02           1651 	ld	hl,#(_alpha + 0x02e1)
+   0E68 36 10              1652 	ld	(hl),#0x10
+   0E6A 21rE2r02           1653 	ld	hl,#(_alpha + 0x02e2)
+   0E6D 36 28              1654 	ld	(hl),#0x28
+   0E6F 21rE3r02           1655 	ld	hl,#(_alpha + 0x02e3)
+   0E72 36 28              1656 	ld	(hl),#0x28
+   0E74 21rE4r02           1657 	ld	hl,#(_alpha + 0x02e4)
+   0E77 36 44              1658 	ld	(hl),#0x44
+   0E79 21rE5r02           1659 	ld	hl,#(_alpha + 0x02e5)
+   0E7C 36 44              1660 	ld	(hl),#0x44
+   0E7E 21rE6r02           1661 	ld	hl,#(_alpha + 0x02e6)
+   0E81 36 82              1662 	ld	(hl),#0x82
+   0E83 21rE7r02           1663 	ld	hl,#(_alpha + 0x02e7)
+   0E86 36 82              1664 	ld	(hl),#0x82
+   0E88 01rE8r02           1665 	ld	bc,#_alpha + 744
+   0E8B AF                 1666 	xor	a, a
+   0E8C 02                 1667 	ld	(bc),a
+   0E8D 01rE9r02           1668 	ld	bc,#_alpha + 745
+   0E90 AF                 1669 	xor	a, a
+   0E91 02                 1670 	ld	(bc),a
+   0E92 01rEAr02           1671 	ld	bc,#_alpha + 746
+   0E95 AF                 1672 	xor	a, a
+   0E96 02                 1673 	ld	(bc),a
+   0E97 01rEBr02           1674 	ld	bc,#_alpha + 747
+   0E9A AF                 1675 	xor	a, a
+   0E9B 02                 1676 	ld	(bc),a
+   0E9C 01rECr02           1677 	ld	bc,#_alpha + 748
+   0E9F AF                 1678 	xor	a, a
+   0EA0 02                 1679 	ld	(bc),a
+   0EA1 01rEDr02           1680 	ld	bc,#_alpha + 749
+   0EA4 AF                 1681 	xor	a, a
+   0EA5 02                 1682 	ld	(bc),a
+   0EA6 01rEEr02           1683 	ld	bc,#_alpha + 750
+   0EA9 AF                 1684 	xor	a, a
+   0EAA 02                 1685 	ld	(bc),a
+   0EAB 01rEFr02           1686 	ld	bc,#_alpha + 751
+   0EAE AF                 1687 	xor	a, a
+   0EAF 02                 1688 	ld	(bc),a
+   0EB0 01rF0r02           1689 	ld	bc,#_alpha + 752
+   0EB3 AF                 1690 	xor	a, a
+   0EB4 02                 1691 	ld	(bc),a
+   0EB5 01rF1r02           1692 	ld	bc,#_alpha + 753
+   0EB8 AF                 1693 	xor	a, a
+   0EB9 02                 1694 	ld	(bc),a
+   0EBA 01rF2r02           1695 	ld	bc,#_alpha + 754
+   0EBD AF                 1696 	xor	a, a
+   0EBE 02                 1697 	ld	(bc),a
+   0EBF 01rF3r02           1698 	ld	bc,#_alpha + 755
+   0EC2 AF                 1699 	xor	a, a
+   0EC3 02                 1700 	ld	(bc),a
+   0EC4 01rF4r02           1701 	ld	bc,#_alpha + 756
+   0EC7 AF                 1702 	xor	a, a
+   0EC8 02                 1703 	ld	(bc),a
+   0EC9 01rF5r02           1704 	ld	bc,#_alpha + 757
+   0ECC AF                 1705 	xor	a, a
+   0ECD 02                 1706 	ld	(bc),a
+   0ECE 01rF6r02           1707 	ld	bc,#_alpha + 758
+   0ED1 AF                 1708 	xor	a, a
+   0ED2 02                 1709 	ld	(bc),a
+   0ED3 01rF7r02           1710 	ld	bc,#_alpha + 759
+   0ED6 AF                 1711 	xor	a, a
+   0ED7 02                 1712 	ld	(bc),a
+   0ED8 01rF8r02           1713 	ld	bc,#_alpha + 760
+   0EDB AF                 1714 	xor	a, a
+   0EDC 02                 1715 	ld	(bc),a
+   0EDD 01rF9r02           1716 	ld	bc,#_alpha + 761
+   0EE0 AF                 1717 	xor	a, a
+   0EE1 02                 1718 	ld	(bc),a
+   0EE2 01rFAr02           1719 	ld	bc,#_alpha + 762
+   0EE5 AF                 1720 	xor	a, a
+   0EE6 02                 1721 	ld	(bc),a
+   0EE7 01rFBr02           1722 	ld	bc,#_alpha + 763
+   0EEA AF                 1723 	xor	a, a
+   0EEB 02                 1724 	ld	(bc),a
+   0EEC 21rFCr02           1725 	ld	hl,#(_alpha + 0x02fc)
+   0EEF 36 FE              1726 	ld	(hl),#0xFE
+   0EF1 21rFDr02           1727 	ld	hl,#(_alpha + 0x02fd)
+   0EF4 36 FE              1728 	ld	(hl),#0xFE
+   0EF6 01rFEr02           1729 	ld	bc,#_alpha + 766
+   0EF9 AF                 1730 	xor	a, a
+   0EFA 02                 1731 	ld	(bc),a
+   0EFB 01rFFr02           1732 	ld	bc,#_alpha + 767
+   0EFE AF                 1733 	xor	a, a
+   0EFF 02                 1734 	ld	(bc),a
+                           1735 ;helloWorld.c:1: unsigned char helloWorld[] =
+   0F00 21r00r03           1736 	ld	hl,#_helloWorld
+   0F03 36 30              1737 	ld	(hl),#0x30
+   0F05 21r01r03           1738 	ld	hl,#(_helloWorld + 0x0001)
+   0F08 36 18              1739 	ld	(hl),#0x18
+   0F0A 21r02r03           1740 	ld	hl,#(_helloWorld + 0x0002)
+   0F0D 36 15              1741 	ld	(hl),#0x15
+   0F0F 21r03r03           1742 	ld	hl,#(_helloWorld + 0x0003)
+   0F12 36 1C              1743 	ld	(hl),#0x1C
+   0F14 21r04r03           1744 	ld	hl,#(_helloWorld + 0x0004)
+   0F17 36 1C              1745 	ld	(hl),#0x1C
+   0F19 21r05r03           1746 	ld	hl,#(_helloWorld + 0x0005)
+   0F1C 36 1F              1747 	ld	(hl),#0x1F
+   0F1E 21r06r03           1748 	ld	hl,#(_helloWorld + 0x0006)
+   0F21 36 30              1749 	ld	(hl),#0x30
+   0F23 21r07r03           1750 	ld	hl,#(_helloWorld + 0x0007)
+   0F26 36 30              1751 	ld	(hl),#0x30
+   0F28 21r08r03           1752 	ld	hl,#(_helloWorld + 0x0008)
+   0F2B 36 30              1753 	ld	(hl),#0x30
+   0F2D 21r09r03           1754 	ld	hl,#(_helloWorld + 0x0009)
+   0F30 36 30              1755 	ld	(hl),#0x30
+   0F32 21r0Ar03           1756 	ld	hl,#(_helloWorld + 0x000a)
+   0F35 36 30              1757 	ld	(hl),#0x30
+   0F37 21r0Br03           1758 	ld	hl,#(_helloWorld + 0x000b)
+   0F3A 36 27              1759 	ld	(hl),#0x27
+   0F3C 21r0Cr03           1760 	ld	hl,#(_helloWorld + 0x000c)
+   0F3F 36 1F              1761 	ld	(hl),#0x1F
+   0F41 21r0Dr03           1762 	ld	hl,#(_helloWorld + 0x000d)
+   0F44 36 22              1763 	ld	(hl),#0x22
+   0F46 21r0Er03           1764 	ld	hl,#(_helloWorld + 0x000e)
+   0F49 36 1C              1765 	ld	(hl),#0x1C
+   0F4B 21r0Fr03           1766 	ld	hl,#(_helloWorld + 0x000f)
+   0F4E 36 14              1767 	ld	(hl),#0x14
+   0F50 21r10r03           1768 	ld	hl,#(_helloWorld + 0x0010)
+   0F53 36 30              1769 	ld	(hl),#0x30
+   0F55 21r11r03           1770 	ld	hl,#(_helloWorld + 0x0011)
+   0F58 36 30              1771 	ld	(hl),#0x30
+   0F5A 21r12r03           1772 	ld	hl,#(_helloWorld + 0x0012)
+   0F5D 36 30              1773 	ld	(hl),#0x30
+   0F5F 21r13r03           1774 	ld	hl,#(_helloWorld + 0x0013)
+   0F62 36 30              1775 	ld	(hl),#0x30
+                           1776 ;blankScreen.c:1: unsigned char blankScreen[] =
+   0F64 21r14r03           1777 	ld	hl,#_blankScreen
+   0F67 36 30              1778 	ld	(hl),#0x30
+   0F69 21r15r03           1779 	ld	hl,#(_blankScreen + 0x0001)
+   0F6C 36 30              1780 	ld	(hl),#0x30
+   0F6E 21r16r03           1781 	ld	hl,#(_blankScreen + 0x0002)
+   0F71 36 30              1782 	ld	(hl),#0x30
+   0F73 21r17r03           1783 	ld	hl,#(_blankScreen + 0x0003)
+   0F76 36 30              1784 	ld	(hl),#0x30
+   0F78 21r18r03           1785 	ld	hl,#(_blankScreen + 0x0004)
+   0F7B 36 30              1786 	ld	(hl),#0x30
+   0F7D 21r19r03           1787 	ld	hl,#(_blankScreen + 0x0005)
+   0F80 36 30              1788 	ld	(hl),#0x30
+   0F82 21r1Ar03           1789 	ld	hl,#(_blankScreen + 0x0006)
+   0F85 36 30              1790 	ld	(hl),#0x30
+   0F87 21r1Br03           1791 	ld	hl,#(_blankScreen + 0x0007)
+   0F8A 36 30              1792 	ld	(hl),#0x30
+   0F8C 21r1Cr03           1793 	ld	hl,#(_blankScreen + 0x0008)
+   0F8F 36 30              1794 	ld	(hl),#0x30
+   0F91 21r1Dr03           1795 	ld	hl,#(_blankScreen + 0x0009)
+   0F94 36 30              1796 	ld	(hl),#0x30
+   0F96 21r1Er03           1797 	ld	hl,#(_blankScreen + 0x000a)
+   0F99 36 30              1798 	ld	(hl),#0x30
+   0F9B 21r1Fr03           1799 	ld	hl,#(_blankScreen + 0x000b)
+   0F9E 36 30              1800 	ld	(hl),#0x30
+   0FA0 21r20r03           1801 	ld	hl,#(_blankScreen + 0x000c)
+   0FA3 36 30              1802 	ld	(hl),#0x30
+   0FA5 21r21r03           1803 	ld	hl,#(_blankScreen + 0x000d)
+   0FA8 36 30              1804 	ld	(hl),#0x30
+   0FAA 21r22r03           1805 	ld	hl,#(_blankScreen + 0x000e)
+   0FAD 36 30              1806 	ld	(hl),#0x30
+   0FAF 21r23r03           1807 	ld	hl,#(_blankScreen + 0x000f)
+   0FB2 36 30              1808 	ld	(hl),#0x30
+   0FB4 21r24r03           1809 	ld	hl,#(_blankScreen + 0x0010)
+   0FB7 36 30              1810 	ld	(hl),#0x30
+   0FB9 21r25r03           1811 	ld	hl,#(_blankScreen + 0x0011)
+   0FBC 36 30              1812 	ld	(hl),#0x30
+   0FBE 21r26r03           1813 	ld	hl,#(_blankScreen + 0x0012)
+   0FC1 36 30              1814 	ld	(hl),#0x30
+   0FC3 21r27r03           1815 	ld	hl,#(_blankScreen + 0x0013)
+   0FC6 36 30              1816 	ld	(hl),#0x30
+   0FC8 21r28r03           1817 	ld	hl,#(_blankScreen + 0x0014)
+   0FCB 36 30              1818 	ld	(hl),#0x30
+   0FCD 21r29r03           1819 	ld	hl,#(_blankScreen + 0x0015)
+   0FD0 36 30              1820 	ld	(hl),#0x30
+   0FD2 21r2Ar03           1821 	ld	hl,#(_blankScreen + 0x0016)
+   0FD5 36 30              1822 	ld	(hl),#0x30
+   0FD7 21r2Br03           1823 	ld	hl,#(_blankScreen + 0x0017)
+   0FDA 36 30              1824 	ld	(hl),#0x30
+   0FDC 21r2Cr03           1825 	ld	hl,#(_blankScreen + 0x0018)
+   0FDF 36 30              1826 	ld	(hl),#0x30
+   0FE1 21r2Dr03           1827 	ld	hl,#(_blankScreen + 0x0019)
+   0FE4 36 30              1828 	ld	(hl),#0x30
+   0FE6 21r2Er03           1829 	ld	hl,#(_blankScreen + 0x001a)
+   0FE9 36 30              1830 	ld	(hl),#0x30
+   0FEB 21r2Fr03           1831 	ld	hl,#(_blankScreen + 0x001b)
+   0FEE 36 30              1832 	ld	(hl),#0x30
+   0FF0 21r30r03           1833 	ld	hl,#(_blankScreen + 0x001c)
+   0FF3 36 30              1834 	ld	(hl),#0x30
+   0FF5 21r31r03           1835 	ld	hl,#(_blankScreen + 0x001d)
+   0FF8 36 30              1836 	ld	(hl),#0x30
+   0FFA 21r32r03           1837 	ld	hl,#(_blankScreen + 0x001e)
+   0FFD 36 30              1838 	ld	(hl),#0x30
+   0FFF 21r33r03           1839 	ld	hl,#(_blankScreen + 0x001f)
+   1002 36 30              1840 	ld	(hl),#0x30
+   1004 21r34r03           1841 	ld	hl,#(_blankScreen + 0x0020)
+   1007 36 30              1842 	ld	(hl),#0x30
+   1009 21r35r03           1843 	ld	hl,#(_blankScreen + 0x0021)
+   100C 36 30              1844 	ld	(hl),#0x30
+   100E 21r36r03           1845 	ld	hl,#(_blankScreen + 0x0022)
+   1011 36 30              1846 	ld	(hl),#0x30
+   1013 21r37r03           1847 	ld	hl,#(_blankScreen + 0x0023)
+   1016 36 30              1848 	ld	(hl),#0x30
+   1018 21r38r03           1849 	ld	hl,#(_blankScreen + 0x0024)
+   101B 36 30              1850 	ld	(hl),#0x30
+   101D 21r39r03           1851 	ld	hl,#(_blankScreen + 0x0025)
+   1020 36 30              1852 	ld	(hl),#0x30
+   1022 21r3Ar03           1853 	ld	hl,#(_blankScreen + 0x0026)
+   1025 36 30              1854 	ld	(hl),#0x30
+   1027 21r3Br03           1855 	ld	hl,#(_blankScreen + 0x0027)
+   102A 36 30              1856 	ld	(hl),#0x30
+   102C 21r3Cr03           1857 	ld	hl,#(_blankScreen + 0x0028)
+   102F 36 30              1858 	ld	(hl),#0x30
+   1031 21r3Dr03           1859 	ld	hl,#(_blankScreen + 0x0029)
+   1034 36 30              1860 	ld	(hl),#0x30
+   1036 21r3Er03           1861 	ld	hl,#(_blankScreen + 0x002a)
+   1039 36 30              1862 	ld	(hl),#0x30
+   103B 21r3Fr03           1863 	ld	hl,#(_blankScreen + 0x002b)
+   103E 36 30              1864 	ld	(hl),#0x30
+   1040 21r40r03           1865 	ld	hl,#(_blankScreen + 0x002c)
+   1043 36 30              1866 	ld	(hl),#0x30
+   1045 21r41r03           1867 	ld	hl,#(_blankScreen + 0x002d)
+   1048 36 30              1868 	ld	(hl),#0x30
+   104A 21r42r03           1869 	ld	hl,#(_blankScreen + 0x002e)
+   104D 36 30              1870 	ld	(hl),#0x30
+   104F 21r43r03           1871 	ld	hl,#(_blankScreen + 0x002f)
+   1052 36 30              1872 	ld	(hl),#0x30
+   1054 21r44r03           1873 	ld	hl,#(_blankScreen + 0x0030)
+   1057 36 30              1874 	ld	(hl),#0x30
+   1059 21r45r03           1875 	ld	hl,#(_blankScreen + 0x0031)
+   105C 36 30              1876 	ld	(hl),#0x30
+   105E 21r46r03           1877 	ld	hl,#(_blankScreen + 0x0032)
+   1061 36 30              1878 	ld	(hl),#0x30
+   1063 21r47r03           1879 	ld	hl,#(_blankScreen + 0x0033)
+   1066 36 30              1880 	ld	(hl),#0x30
+   1068 21r48r03           1881 	ld	hl,#(_blankScreen + 0x0034)
+   106B 36 30              1882 	ld	(hl),#0x30
+   106D 21r49r03           1883 	ld	hl,#(_blankScreen + 0x0035)
+   1070 36 30              1884 	ld	(hl),#0x30
+   1072 21r4Ar03           1885 	ld	hl,#(_blankScreen + 0x0036)
+   1075 36 30              1886 	ld	(hl),#0x30
+   1077 21r4Br03           1887 	ld	hl,#(_blankScreen + 0x0037)
+   107A 36 30              1888 	ld	(hl),#0x30
+   107C 21r4Cr03           1889 	ld	hl,#(_blankScreen + 0x0038)
+   107F 36 30              1890 	ld	(hl),#0x30
+   1081 21r4Dr03           1891 	ld	hl,#(_blankScreen + 0x0039)
+   1084 36 30              1892 	ld	(hl),#0x30
+   1086 21r4Er03           1893 	ld	hl,#(_blankScreen + 0x003a)
+   1089 36 30              1894 	ld	(hl),#0x30
+   108B 21r4Fr03           1895 	ld	hl,#(_blankScreen + 0x003b)
+   108E 36 30              1896 	ld	(hl),#0x30
+   1090 21r50r03           1897 	ld	hl,#(_blankScreen + 0x003c)
+   1093 36 30              1898 	ld	(hl),#0x30
+   1095 21r51r03           1899 	ld	hl,#(_blankScreen + 0x003d)
+   1098 36 30              1900 	ld	(hl),#0x30
+   109A 21r52r03           1901 	ld	hl,#(_blankScreen + 0x003e)
+   109D 36 30              1902 	ld	(hl),#0x30
+   109F 21r53r03           1903 	ld	hl,#(_blankScreen + 0x003f)
+   10A2 36 30              1904 	ld	(hl),#0x30
+   10A4 21r54r03           1905 	ld	hl,#(_blankScreen + 0x0040)
+   10A7 36 30              1906 	ld	(hl),#0x30
+   10A9 21r55r03           1907 	ld	hl,#(_blankScreen + 0x0041)
+   10AC 36 30              1908 	ld	(hl),#0x30
+   10AE 21r56r03           1909 	ld	hl,#(_blankScreen + 0x0042)
+   10B1 36 30              1910 	ld	(hl),#0x30
+   10B3 21r57r03           1911 	ld	hl,#(_blankScreen + 0x0043)
+   10B6 36 30              1912 	ld	(hl),#0x30
+   10B8 21r58r03           1913 	ld	hl,#(_blankScreen + 0x0044)
+   10BB 36 30              1914 	ld	(hl),#0x30
+   10BD 21r59r03           1915 	ld	hl,#(_blankScreen + 0x0045)
+   10C0 36 30              1916 	ld	(hl),#0x30
+   10C2 21r5Ar03           1917 	ld	hl,#(_blankScreen + 0x0046)
+   10C5 36 30              1918 	ld	(hl),#0x30
+   10C7 21r5Br03           1919 	ld	hl,#(_blankScreen + 0x0047)
+   10CA 36 30              1920 	ld	(hl),#0x30
+   10CC 21r5Cr03           1921 	ld	hl,#(_blankScreen + 0x0048)
+   10CF 36 30              1922 	ld	(hl),#0x30
+   10D1 21r5Dr03           1923 	ld	hl,#(_blankScreen + 0x0049)
+   10D4 36 30              1924 	ld	(hl),#0x30
+   10D6 21r5Er03           1925 	ld	hl,#(_blankScreen + 0x004a)
+   10D9 36 30              1926 	ld	(hl),#0x30
+   10DB 21r5Fr03           1927 	ld	hl,#(_blankScreen + 0x004b)
+   10DE 36 30              1928 	ld	(hl),#0x30
+   10E0 21r60r03           1929 	ld	hl,#(_blankScreen + 0x004c)
+   10E3 36 30              1930 	ld	(hl),#0x30
+   10E5 21r61r03           1931 	ld	hl,#(_blankScreen + 0x004d)
+   10E8 36 30              1932 	ld	(hl),#0x30
+   10EA 21r62r03           1933 	ld	hl,#(_blankScreen + 0x004e)
+   10ED 36 30              1934 	ld	(hl),#0x30
+   10EF 21r63r03           1935 	ld	hl,#(_blankScreen + 0x004f)
+   10F2 36 30              1936 	ld	(hl),#0x30
+   10F4 21r64r03           1937 	ld	hl,#(_blankScreen + 0x0050)
+   10F7 36 30              1938 	ld	(hl),#0x30
+   10F9 21r65r03           1939 	ld	hl,#(_blankScreen + 0x0051)
+   10FC 36 30              1940 	ld	(hl),#0x30
+   10FE 21r66r03           1941 	ld	hl,#(_blankScreen + 0x0052)
+   1101 36 30              1942 	ld	(hl),#0x30
+   1103 21r67r03           1943 	ld	hl,#(_blankScreen + 0x0053)
+   1106 36 30              1944 	ld	(hl),#0x30
+   1108 21r68r03           1945 	ld	hl,#(_blankScreen + 0x0054)
+   110B 36 30              1946 	ld	(hl),#0x30
+   110D 21r69r03           1947 	ld	hl,#(_blankScreen + 0x0055)
+   1110 36 30              1948 	ld	(hl),#0x30
+   1112 21r6Ar03           1949 	ld	hl,#(_blankScreen + 0x0056)
+   1115 36 30              1950 	ld	(hl),#0x30
+   1117 21r6Br03           1951 	ld	hl,#(_blankScreen + 0x0057)
+   111A 36 30              1952 	ld	(hl),#0x30
+   111C 21r6Cr03           1953 	ld	hl,#(_blankScreen + 0x0058)
+   111F 36 30              1954 	ld	(hl),#0x30
+   1121 21r6Dr03           1955 	ld	hl,#(_blankScreen + 0x0059)
+   1124 36 30              1956 	ld	(hl),#0x30
+   1126 21r6Er03           1957 	ld	hl,#(_blankScreen + 0x005a)
+   1129 36 30              1958 	ld	(hl),#0x30
+   112B 21r6Fr03           1959 	ld	hl,#(_blankScreen + 0x005b)
+   112E 36 30              1960 	ld	(hl),#0x30
+   1130 21r70r03           1961 	ld	hl,#(_blankScreen + 0x005c)
+   1133 36 30              1962 	ld	(hl),#0x30
+   1135 21r71r03           1963 	ld	hl,#(_blankScreen + 0x005d)
+   1138 36 30              1964 	ld	(hl),#0x30
+   113A 21r72r03           1965 	ld	hl,#(_blankScreen + 0x005e)
+   113D 36 30              1966 	ld	(hl),#0x30
+   113F 21r73r03           1967 	ld	hl,#(_blankScreen + 0x005f)
+   1142 36 30              1968 	ld	(hl),#0x30
+   1144 21r74r03           1969 	ld	hl,#(_blankScreen + 0x0060)
+   1147 36 30              1970 	ld	(hl),#0x30
+   1149 21r75r03           1971 	ld	hl,#(_blankScreen + 0x0061)
+   114C 36 30              1972 	ld	(hl),#0x30
+   114E 21r76r03           1973 	ld	hl,#(_blankScreen + 0x0062)
+   1151 36 30              1974 	ld	(hl),#0x30
+   1153 21r77r03           1975 	ld	hl,#(_blankScreen + 0x0063)
+   1156 36 30              1976 	ld	(hl),#0x30
+   1158 21r78r03           1977 	ld	hl,#(_blankScreen + 0x0064)
+   115B 36 30              1978 	ld	(hl),#0x30
+   115D 21r79r03           1979 	ld	hl,#(_blankScreen + 0x0065)
+   1160 36 30              1980 	ld	(hl),#0x30
+   1162 21r7Ar03           1981 	ld	hl,#(_blankScreen + 0x0066)
+   1165 36 30              1982 	ld	(hl),#0x30
+   1167 21r7Br03           1983 	ld	hl,#(_blankScreen + 0x0067)
+   116A 36 30              1984 	ld	(hl),#0x30
+   116C 21r7Cr03           1985 	ld	hl,#(_blankScreen + 0x0068)
+   116F 36 30              1986 	ld	(hl),#0x30
+   1171 21r7Dr03           1987 	ld	hl,#(_blankScreen + 0x0069)
+   1174 36 30              1988 	ld	(hl),#0x30
+   1176 21r7Er03           1989 	ld	hl,#(_blankScreen + 0x006a)
+   1179 36 30              1990 	ld	(hl),#0x30
+   117B 21r7Fr03           1991 	ld	hl,#(_blankScreen + 0x006b)
+   117E 36 30              1992 	ld	(hl),#0x30
+   1180 21r80r03           1993 	ld	hl,#(_blankScreen + 0x006c)
+   1183 36 30              1994 	ld	(hl),#0x30
+   1185 21r81r03           1995 	ld	hl,#(_blankScreen + 0x006d)
+   1188 36 30              1996 	ld	(hl),#0x30
+   118A 21r82r03           1997 	ld	hl,#(_blankScreen + 0x006e)
+   118D 36 30              1998 	ld	(hl),#0x30
+   118F 21r83r03           1999 	ld	hl,#(_blankScreen + 0x006f)
+   1192 36 30              2000 	ld	(hl),#0x30
+   1194 21r84r03           2001 	ld	hl,#(_blankScreen + 0x0070)
+   1197 36 30              2002 	ld	(hl),#0x30
+   1199 21r85r03           2003 	ld	hl,#(_blankScreen + 0x0071)
+   119C 36 30              2004 	ld	(hl),#0x30
+   119E 21r86r03           2005 	ld	hl,#(_blankScreen + 0x0072)
+   11A1 36 30              2006 	ld	(hl),#0x30
+   11A3 21r87r03           2007 	ld	hl,#(_blankScreen + 0x0073)
+   11A6 36 30              2008 	ld	(hl),#0x30
+   11A8 21r88r03           2009 	ld	hl,#(_blankScreen + 0x0074)
+   11AB 36 30              2010 	ld	(hl),#0x30
+   11AD 21r89r03           2011 	ld	hl,#(_blankScreen + 0x0075)
+   11B0 36 30              2012 	ld	(hl),#0x30
+   11B2 21r8Ar03           2013 	ld	hl,#(_blankScreen + 0x0076)
+   11B5 36 30              2014 	ld	(hl),#0x30
+   11B7 21r8Br03           2015 	ld	hl,#(_blankScreen + 0x0077)
+   11BA 36 30              2016 	ld	(hl),#0x30
+   11BC 21r8Cr03           2017 	ld	hl,#(_blankScreen + 0x0078)
+   11BF 36 30              2018 	ld	(hl),#0x30
+   11C1 21r8Dr03           2019 	ld	hl,#(_blankScreen + 0x0079)
+   11C4 36 30              2020 	ld	(hl),#0x30
+   11C6 21r8Er03           2021 	ld	hl,#(_blankScreen + 0x007a)
+   11C9 36 30              2022 	ld	(hl),#0x30
+   11CB 21r8Fr03           2023 	ld	hl,#(_blankScreen + 0x007b)
+   11CE 36 30              2024 	ld	(hl),#0x30
+   11D0 21r90r03           2025 	ld	hl,#(_blankScreen + 0x007c)
+   11D3 36 30              2026 	ld	(hl),#0x30
+   11D5 21r91r03           2027 	ld	hl,#(_blankScreen + 0x007d)
+   11D8 36 30              2028 	ld	(hl),#0x30
+   11DA 21r92r03           2029 	ld	hl,#(_blankScreen + 0x007e)
+   11DD 36 30              2030 	ld	(hl),#0x30
+   11DF 21r93r03           2031 	ld	hl,#(_blankScreen + 0x007f)
+   11E2 36 30              2032 	ld	(hl),#0x30
+   11E4 21r94r03           2033 	ld	hl,#(_blankScreen + 0x0080)
+   11E7 36 30              2034 	ld	(hl),#0x30
+   11E9 21r95r03           2035 	ld	hl,#(_blankScreen + 0x0081)
+   11EC 36 30              2036 	ld	(hl),#0x30
+   11EE 21r96r03           2037 	ld	hl,#(_blankScreen + 0x0082)
+   11F1 36 30              2038 	ld	(hl),#0x30
+   11F3 21r97r03           2039 	ld	hl,#(_blankScreen + 0x0083)
+   11F6 36 30              2040 	ld	(hl),#0x30
+   11F8 21r98r03           2041 	ld	hl,#(_blankScreen + 0x0084)
+   11FB 36 30              2042 	ld	(hl),#0x30
+   11FD 21r99r03           2043 	ld	hl,#(_blankScreen + 0x0085)
+   1200 36 30              2044 	ld	(hl),#0x30
+   1202 21r9Ar03           2045 	ld	hl,#(_blankScreen + 0x0086)
+   1205 36 30              2046 	ld	(hl),#0x30
+   1207 21r9Br03           2047 	ld	hl,#(_blankScreen + 0x0087)
+   120A 36 30              2048 	ld	(hl),#0x30
+   120C 21r9Cr03           2049 	ld	hl,#(_blankScreen + 0x0088)
+   120F 36 30              2050 	ld	(hl),#0x30
+   1211 21r9Dr03           2051 	ld	hl,#(_blankScreen + 0x0089)
+   1214 36 30              2052 	ld	(hl),#0x30
+   1216 21r9Er03           2053 	ld	hl,#(_blankScreen + 0x008a)
+   1219 36 30              2054 	ld	(hl),#0x30
+   121B 21r9Fr03           2055 	ld	hl,#(_blankScreen + 0x008b)
+   121E 36 30              2056 	ld	(hl),#0x30
+   1220 21rA0r03           2057 	ld	hl,#(_blankScreen + 0x008c)
+   1223 36 30              2058 	ld	(hl),#0x30
+   1225 21rA1r03           2059 	ld	hl,#(_blankScreen + 0x008d)
+   1228 36 30              2060 	ld	(hl),#0x30
+   122A 21rA2r03           2061 	ld	hl,#(_blankScreen + 0x008e)
+   122D 36 30              2062 	ld	(hl),#0x30
+   122F 21rA3r03           2063 	ld	hl,#(_blankScreen + 0x008f)
+   1232 36 30              2064 	ld	(hl),#0x30
+   1234 21rA4r03           2065 	ld	hl,#(_blankScreen + 0x0090)
+   1237 36 30              2066 	ld	(hl),#0x30
+   1239 21rA5r03           2067 	ld	hl,#(_blankScreen + 0x0091)
+   123C 36 30              2068 	ld	(hl),#0x30
+   123E 21rA6r03           2069 	ld	hl,#(_blankScreen + 0x0092)
+   1241 36 30              2070 	ld	(hl),#0x30
+   1243 21rA7r03           2071 	ld	hl,#(_blankScreen + 0x0093)
+   1246 36 30              2072 	ld	(hl),#0x30
+   1248 21rA8r03           2073 	ld	hl,#(_blankScreen + 0x0094)
+   124B 36 30              2074 	ld	(hl),#0x30
+   124D 21rA9r03           2075 	ld	hl,#(_blankScreen + 0x0095)
+   1250 36 30              2076 	ld	(hl),#0x30
+   1252 21rAAr03           2077 	ld	hl,#(_blankScreen + 0x0096)
+   1255 36 30              2078 	ld	(hl),#0x30
+   1257 21rABr03           2079 	ld	hl,#(_blankScreen + 0x0097)
+   125A 36 30              2080 	ld	(hl),#0x30
+   125C 21rACr03           2081 	ld	hl,#(_blankScreen + 0x0098)
+   125F 36 30              2082 	ld	(hl),#0x30
+   1261 21rADr03           2083 	ld	hl,#(_blankScreen + 0x0099)
+   1264 36 30              2084 	ld	(hl),#0x30
+   1266 21rAEr03           2085 	ld	hl,#(_blankScreen + 0x009a)
+   1269 36 30              2086 	ld	(hl),#0x30
+   126B 21rAFr03           2087 	ld	hl,#(_blankScreen + 0x009b)
+   126E 36 30              2088 	ld	(hl),#0x30
+   1270 21rB0r03           2089 	ld	hl,#(_blankScreen + 0x009c)
+   1273 36 30              2090 	ld	(hl),#0x30
+   1275 21rB1r03           2091 	ld	hl,#(_blankScreen + 0x009d)
+   1278 36 30              2092 	ld	(hl),#0x30
+   127A 21rB2r03           2093 	ld	hl,#(_blankScreen + 0x009e)
+   127D 36 30              2094 	ld	(hl),#0x30
+   127F 21rB3r03           2095 	ld	hl,#(_blankScreen + 0x009f)
+   1282 36 30              2096 	ld	(hl),#0x30
+   1284 21rB4r03           2097 	ld	hl,#(_blankScreen + 0x00a0)
+   1287 36 30              2098 	ld	(hl),#0x30
+   1289 21rB5r03           2099 	ld	hl,#(_blankScreen + 0x00a1)
+   128C 36 30              2100 	ld	(hl),#0x30
+   128E 21rB6r03           2101 	ld	hl,#(_blankScreen + 0x00a2)
+   1291 36 30              2102 	ld	(hl),#0x30
+   1293 21rB7r03           2103 	ld	hl,#(_blankScreen + 0x00a3)
+   1296 36 30              2104 	ld	(hl),#0x30
+   1298 21rB8r03           2105 	ld	hl,#(_blankScreen + 0x00a4)
+   129B 36 30              2106 	ld	(hl),#0x30
+   129D 21rB9r03           2107 	ld	hl,#(_blankScreen + 0x00a5)
+   12A0 36 30              2108 	ld	(hl),#0x30
+   12A2 21rBAr03           2109 	ld	hl,#(_blankScreen + 0x00a6)
+   12A5 36 30              2110 	ld	(hl),#0x30
+   12A7 21rBBr03           2111 	ld	hl,#(_blankScreen + 0x00a7)
+   12AA 36 30              2112 	ld	(hl),#0x30
+   12AC 21rBCr03           2113 	ld	hl,#(_blankScreen + 0x00a8)
+   12AF 36 30              2114 	ld	(hl),#0x30
+   12B1 21rBDr03           2115 	ld	hl,#(_blankScreen + 0x00a9)
+   12B4 36 30              2116 	ld	(hl),#0x30
+   12B6 21rBEr03           2117 	ld	hl,#(_blankScreen + 0x00aa)
+   12B9 36 30              2118 	ld	(hl),#0x30
+   12BB 21rBFr03           2119 	ld	hl,#(_blankScreen + 0x00ab)
+   12BE 36 30              2120 	ld	(hl),#0x30
+   12C0 21rC0r03           2121 	ld	hl,#(_blankScreen + 0x00ac)
+   12C3 36 30              2122 	ld	(hl),#0x30
+   12C5 21rC1r03           2123 	ld	hl,#(_blankScreen + 0x00ad)
+   12C8 36 30              2124 	ld	(hl),#0x30
+   12CA 21rC2r03           2125 	ld	hl,#(_blankScreen + 0x00ae)
+   12CD 36 30              2126 	ld	(hl),#0x30
+   12CF 21rC3r03           2127 	ld	hl,#(_blankScreen + 0x00af)
+   12D2 36 30              2128 	ld	(hl),#0x30
+   12D4 21rC4r03           2129 	ld	hl,#(_blankScreen + 0x00b0)
+   12D7 36 30              2130 	ld	(hl),#0x30
+   12D9 21rC5r03           2131 	ld	hl,#(_blankScreen + 0x00b1)
+   12DC 36 30              2132 	ld	(hl),#0x30
+   12DE 21rC6r03           2133 	ld	hl,#(_blankScreen + 0x00b2)
+   12E1 36 30              2134 	ld	(hl),#0x30
+   12E3 21rC7r03           2135 	ld	hl,#(_blankScreen + 0x00b3)
+   12E6 36 30              2136 	ld	(hl),#0x30
+   12E8 21rC8r03           2137 	ld	hl,#(_blankScreen + 0x00b4)
+   12EB 36 30              2138 	ld	(hl),#0x30
+   12ED 21rC9r03           2139 	ld	hl,#(_blankScreen + 0x00b5)
+   12F0 36 30              2140 	ld	(hl),#0x30
+   12F2 21rCAr03           2141 	ld	hl,#(_blankScreen + 0x00b6)
+   12F5 36 30              2142 	ld	(hl),#0x30
+   12F7 21rCBr03           2143 	ld	hl,#(_blankScreen + 0x00b7)
+   12FA 36 30              2144 	ld	(hl),#0x30
+   12FC 21rCCr03           2145 	ld	hl,#(_blankScreen + 0x00b8)
+   12FF 36 30              2146 	ld	(hl),#0x30
+   1301 21rCDr03           2147 	ld	hl,#(_blankScreen + 0x00b9)
+   1304 36 30              2148 	ld	(hl),#0x30
+   1306 21rCEr03           2149 	ld	hl,#(_blankScreen + 0x00ba)
+   1309 36 30              2150 	ld	(hl),#0x30
+   130B 21rCFr03           2151 	ld	hl,#(_blankScreen + 0x00bb)
+   130E 36 30              2152 	ld	(hl),#0x30
+   1310 21rD0r03           2153 	ld	hl,#(_blankScreen + 0x00bc)
+   1313 36 30              2154 	ld	(hl),#0x30
+   1315 21rD1r03           2155 	ld	hl,#(_blankScreen + 0x00bd)
+   1318 36 30              2156 	ld	(hl),#0x30
+   131A 21rD2r03           2157 	ld	hl,#(_blankScreen + 0x00be)
+   131D 36 30              2158 	ld	(hl),#0x30
+   131F 21rD3r03           2159 	ld	hl,#(_blankScreen + 0x00bf)
+   1322 36 30              2160 	ld	(hl),#0x30
+   1324 21rD4r03           2161 	ld	hl,#(_blankScreen + 0x00c0)
+   1327 36 30              2162 	ld	(hl),#0x30
+   1329 21rD5r03           2163 	ld	hl,#(_blankScreen + 0x00c1)
+   132C 36 30              2164 	ld	(hl),#0x30
+   132E 21rD6r03           2165 	ld	hl,#(_blankScreen + 0x00c2)
+   1331 36 30              2166 	ld	(hl),#0x30
+   1333 21rD7r03           2167 	ld	hl,#(_blankScreen + 0x00c3)
+   1336 36 30              2168 	ld	(hl),#0x30
+   1338 21rD8r03           2169 	ld	hl,#(_blankScreen + 0x00c4)
+   133B 36 30              2170 	ld	(hl),#0x30
+   133D 21rD9r03           2171 	ld	hl,#(_blankScreen + 0x00c5)
+   1340 36 30              2172 	ld	(hl),#0x30
+   1342 21rDAr03           2173 	ld	hl,#(_blankScreen + 0x00c6)
+   1345 36 30              2174 	ld	(hl),#0x30
+   1347 21rDBr03           2175 	ld	hl,#(_blankScreen + 0x00c7)
+   134A 36 30              2176 	ld	(hl),#0x30
+   134C 21rDCr03           2177 	ld	hl,#(_blankScreen + 0x00c8)
+   134F 36 30              2178 	ld	(hl),#0x30
+   1351 21rDDr03           2179 	ld	hl,#(_blankScreen + 0x00c9)
+   1354 36 30              2180 	ld	(hl),#0x30
+   1356 21rDEr03           2181 	ld	hl,#(_blankScreen + 0x00ca)
+   1359 36 30              2182 	ld	(hl),#0x30
+   135B 21rDFr03           2183 	ld	hl,#(_blankScreen + 0x00cb)
+   135E 36 30              2184 	ld	(hl),#0x30
+   1360 21rE0r03           2185 	ld	hl,#(_blankScreen + 0x00cc)
+   1363 36 30              2186 	ld	(hl),#0x30
+   1365 21rE1r03           2187 	ld	hl,#(_blankScreen + 0x00cd)
+   1368 36 30              2188 	ld	(hl),#0x30
+   136A 21rE2r03           2189 	ld	hl,#(_blankScreen + 0x00ce)
+   136D 36 30              2190 	ld	(hl),#0x30
+   136F 21rE3r03           2191 	ld	hl,#(_blankScreen + 0x00cf)
+   1372 36 30              2192 	ld	(hl),#0x30
+   1374 21rE4r03           2193 	ld	hl,#(_blankScreen + 0x00d0)
+   1377 36 30              2194 	ld	(hl),#0x30
+   1379 21rE5r03           2195 	ld	hl,#(_blankScreen + 0x00d1)
+   137C 36 30              2196 	ld	(hl),#0x30
+   137E 21rE6r03           2197 	ld	hl,#(_blankScreen + 0x00d2)
+   1381 36 30              2198 	ld	(hl),#0x30
+   1383 21rE7r03           2199 	ld	hl,#(_blankScreen + 0x00d3)
+   1386 36 30              2200 	ld	(hl),#0x30
+   1388 21rE8r03           2201 	ld	hl,#(_blankScreen + 0x00d4)
+   138B 36 30              2202 	ld	(hl),#0x30
+   138D 21rE9r03           2203 	ld	hl,#(_blankScreen + 0x00d5)
+   1390 36 30              2204 	ld	(hl),#0x30
+   1392 21rEAr03           2205 	ld	hl,#(_blankScreen + 0x00d6)
+   1395 36 30              2206 	ld	(hl),#0x30
+   1397 21rEBr03           2207 	ld	hl,#(_blankScreen + 0x00d7)
+   139A 36 30              2208 	ld	(hl),#0x30
+   139C 21rECr03           2209 	ld	hl,#(_blankScreen + 0x00d8)
+   139F 36 30              2210 	ld	(hl),#0x30
+   13A1 21rEDr03           2211 	ld	hl,#(_blankScreen + 0x00d9)
+   13A4 36 30              2212 	ld	(hl),#0x30
+   13A6 21rEEr03           2213 	ld	hl,#(_blankScreen + 0x00da)
+   13A9 36 30              2214 	ld	(hl),#0x30
+   13AB 21rEFr03           2215 	ld	hl,#(_blankScreen + 0x00db)
+   13AE 36 30              2216 	ld	(hl),#0x30
+   13B0 21rF0r03           2217 	ld	hl,#(_blankScreen + 0x00dc)
+   13B3 36 30              2218 	ld	(hl),#0x30
+   13B5 21rF1r03           2219 	ld	hl,#(_blankScreen + 0x00dd)
+   13B8 36 30              2220 	ld	(hl),#0x30
+   13BA 21rF2r03           2221 	ld	hl,#(_blankScreen + 0x00de)
+   13BD 36 30              2222 	ld	(hl),#0x30
+   13BF 21rF3r03           2223 	ld	hl,#(_blankScreen + 0x00df)
+   13C2 36 30              2224 	ld	(hl),#0x30
+   13C4 21rF4r03           2225 	ld	hl,#(_blankScreen + 0x00e0)
+   13C7 36 30              2226 	ld	(hl),#0x30
+   13C9 21rF5r03           2227 	ld	hl,#(_blankScreen + 0x00e1)
+   13CC 36 30              2228 	ld	(hl),#0x30
+   13CE 21rF6r03           2229 	ld	hl,#(_blankScreen + 0x00e2)
+   13D1 36 30              2230 	ld	(hl),#0x30
+   13D3 21rF7r03           2231 	ld	hl,#(_blankScreen + 0x00e3)
+   13D6 36 30              2232 	ld	(hl),#0x30
+   13D8 21rF8r03           2233 	ld	hl,#(_blankScreen + 0x00e4)
+   13DB 36 30              2234 	ld	(hl),#0x30
+   13DD 21rF9r03           2235 	ld	hl,#(_blankScreen + 0x00e5)
+   13E0 36 30              2236 	ld	(hl),#0x30
+   13E2 21rFAr03           2237 	ld	hl,#(_blankScreen + 0x00e6)
+   13E5 36 30              2238 	ld	(hl),#0x30
+   13E7 21rFBr03           2239 	ld	hl,#(_blankScreen + 0x00e7)
+   13EA 36 30              2240 	ld	(hl),#0x30
+   13EC 21rFCr03           2241 	ld	hl,#(_blankScreen + 0x00e8)
+   13EF 36 30              2242 	ld	(hl),#0x30
+   13F1 21rFDr03           2243 	ld	hl,#(_blankScreen + 0x00e9)
+   13F4 36 30              2244 	ld	(hl),#0x30
+   13F6 21rFEr03           2245 	ld	hl,#(_blankScreen + 0x00ea)
+   13F9 36 30              2246 	ld	(hl),#0x30
+   13FB 21rFFr03           2247 	ld	hl,#(_blankScreen + 0x00eb)
+   13FE 36 30              2248 	ld	(hl),#0x30
+   1400 21r00r04           2249 	ld	hl,#(_blankScreen + 0x00ec)
+   1403 36 30              2250 	ld	(hl),#0x30
+   1405 21r01r04           2251 	ld	hl,#(_blankScreen + 0x00ed)
+   1408 36 30              2252 	ld	(hl),#0x30
+   140A 21r02r04           2253 	ld	hl,#(_blankScreen + 0x00ee)
+   140D 36 30              2254 	ld	(hl),#0x30
+   140F 21r03r04           2255 	ld	hl,#(_blankScreen + 0x00ef)
+   1412 36 30              2256 	ld	(hl),#0x30
+   1414 21r04r04           2257 	ld	hl,#(_blankScreen + 0x00f0)
+   1417 36 30              2258 	ld	(hl),#0x30
+   1419 21r05r04           2259 	ld	hl,#(_blankScreen + 0x00f1)
+   141C 36 30              2260 	ld	(hl),#0x30
+   141E 21r06r04           2261 	ld	hl,#(_blankScreen + 0x00f2)
+   1421 36 30              2262 	ld	(hl),#0x30
+   1423 21r07r04           2263 	ld	hl,#(_blankScreen + 0x00f3)
+   1426 36 30              2264 	ld	(hl),#0x30
+   1428 21r08r04           2265 	ld	hl,#(_blankScreen + 0x00f4)
+   142B 36 30              2266 	ld	(hl),#0x30
+   142D 21r09r04           2267 	ld	hl,#(_blankScreen + 0x00f5)
+   1430 36 30              2268 	ld	(hl),#0x30
+   1432 21r0Ar04           2269 	ld	hl,#(_blankScreen + 0x00f6)
+   1435 36 30              2270 	ld	(hl),#0x30
+   1437 21r0Br04           2271 	ld	hl,#(_blankScreen + 0x00f7)
+   143A 36 30              2272 	ld	(hl),#0x30
+   143C 21r0Cr04           2273 	ld	hl,#(_blankScreen + 0x00f8)
+   143F 36 30              2274 	ld	(hl),#0x30
+   1441 21r0Dr04           2275 	ld	hl,#(_blankScreen + 0x00f9)
+   1444 36 30              2276 	ld	(hl),#0x30
+   1446 21r0Er04           2277 	ld	hl,#(_blankScreen + 0x00fa)
+   1449 36 30              2278 	ld	(hl),#0x30
+   144B 21r0Fr04           2279 	ld	hl,#(_blankScreen + 0x00fb)
+   144E 36 30              2280 	ld	(hl),#0x30
+   1450 21r10r04           2281 	ld	hl,#(_blankScreen + 0x00fc)
+   1453 36 30              2282 	ld	(hl),#0x30
+   1455 21r11r04           2283 	ld	hl,#(_blankScreen + 0x00fd)
+   1458 36 30              2284 	ld	(hl),#0x30
+   145A 21r12r04           2285 	ld	hl,#(_blankScreen + 0x00fe)
+   145D 36 30              2286 	ld	(hl),#0x30
+   145F 21r13r04           2287 	ld	hl,#(_blankScreen + 0x00ff)
+   1462 36 30              2288 	ld	(hl),#0x30
+   1464 21r14r04           2289 	ld	hl,#(_blankScreen + 0x0100)
+   1467 36 30              2290 	ld	(hl),#0x30
+   1469 21r15r04           2291 	ld	hl,#(_blankScreen + 0x0101)
+   146C 36 30              2292 	ld	(hl),#0x30
+   146E 21r16r04           2293 	ld	hl,#(_blankScreen + 0x0102)
+   1471 36 30              2294 	ld	(hl),#0x30
+   1473 21r17r04           2295 	ld	hl,#(_blankScreen + 0x0103)
+   1476 36 30              2296 	ld	(hl),#0x30
+   1478 21r18r04           2297 	ld	hl,#(_blankScreen + 0x0104)
+   147B 36 30              2298 	ld	(hl),#0x30
+   147D 21r19r04           2299 	ld	hl,#(_blankScreen + 0x0105)
+   1480 36 30              2300 	ld	(hl),#0x30
+   1482 21r1Ar04           2301 	ld	hl,#(_blankScreen + 0x0106)
+   1485 36 30              2302 	ld	(hl),#0x30
+   1487 21r1Br04           2303 	ld	hl,#(_blankScreen + 0x0107)
+   148A 36 30              2304 	ld	(hl),#0x30
+   148C 21r1Cr04           2305 	ld	hl,#(_blankScreen + 0x0108)
+   148F 36 30              2306 	ld	(hl),#0x30
+   1491 21r1Dr04           2307 	ld	hl,#(_blankScreen + 0x0109)
+   1494 36 30              2308 	ld	(hl),#0x30
+   1496 21r1Er04           2309 	ld	hl,#(_blankScreen + 0x010a)
+   1499 36 30              2310 	ld	(hl),#0x30
+   149B 21r1Fr04           2311 	ld	hl,#(_blankScreen + 0x010b)
+   149E 36 30              2312 	ld	(hl),#0x30
+   14A0 21r20r04           2313 	ld	hl,#(_blankScreen + 0x010c)
+   14A3 36 30              2314 	ld	(hl),#0x30
+   14A5 21r21r04           2315 	ld	hl,#(_blankScreen + 0x010d)
+   14A8 36 30              2316 	ld	(hl),#0x30
+   14AA 21r22r04           2317 	ld	hl,#(_blankScreen + 0x010e)
+   14AD 36 30              2318 	ld	(hl),#0x30
+   14AF 21r23r04           2319 	ld	hl,#(_blankScreen + 0x010f)
+   14B2 36 30              2320 	ld	(hl),#0x30
+   14B4 21r24r04           2321 	ld	hl,#(_blankScreen + 0x0110)
+   14B7 36 30              2322 	ld	(hl),#0x30
+   14B9 21r25r04           2323 	ld	hl,#(_blankScreen + 0x0111)
+   14BC 36 30              2324 	ld	(hl),#0x30
+   14BE 21r26r04           2325 	ld	hl,#(_blankScreen + 0x0112)
+   14C1 36 30              2326 	ld	(hl),#0x30
+   14C3 21r27r04           2327 	ld	hl,#(_blankScreen + 0x0113)
+   14C6 36 30              2328 	ld	(hl),#0x30
+   14C8 21r28r04           2329 	ld	hl,#(_blankScreen + 0x0114)
+   14CB 36 30              2330 	ld	(hl),#0x30
+   14CD 21r29r04           2331 	ld	hl,#(_blankScreen + 0x0115)
+   14D0 36 30              2332 	ld	(hl),#0x30
+   14D2 21r2Ar04           2333 	ld	hl,#(_blankScreen + 0x0116)
+   14D5 36 30              2334 	ld	(hl),#0x30
+   14D7 21r2Br04           2335 	ld	hl,#(_blankScreen + 0x0117)
+   14DA 36 30              2336 	ld	(hl),#0x30
+   14DC 21r2Cr04           2337 	ld	hl,#(_blankScreen + 0x0118)
+   14DF 36 30              2338 	ld	(hl),#0x30
+   14E1 21r2Dr04           2339 	ld	hl,#(_blankScreen + 0x0119)
+   14E4 36 30              2340 	ld	(hl),#0x30
+   14E6 21r2Er04           2341 	ld	hl,#(_blankScreen + 0x011a)
+   14E9 36 30              2342 	ld	(hl),#0x30
+   14EB 21r2Fr04           2343 	ld	hl,#(_blankScreen + 0x011b)
+   14EE 36 30              2344 	ld	(hl),#0x30
+   14F0 21r30r04           2345 	ld	hl,#(_blankScreen + 0x011c)
+   14F3 36 30              2346 	ld	(hl),#0x30
+   14F5 21r31r04           2347 	ld	hl,#(_blankScreen + 0x011d)
+   14F8 36 30              2348 	ld	(hl),#0x30
+   14FA 21r32r04           2349 	ld	hl,#(_blankScreen + 0x011e)
+   14FD 36 30              2350 	ld	(hl),#0x30
+   14FF 21r33r04           2351 	ld	hl,#(_blankScreen + 0x011f)
+   1502 36 30              2352 	ld	(hl),#0x30
+   1504 21r34r04           2353 	ld	hl,#(_blankScreen + 0x0120)
+   1507 36 30              2354 	ld	(hl),#0x30
+   1509 21r35r04           2355 	ld	hl,#(_blankScreen + 0x0121)
+   150C 36 30              2356 	ld	(hl),#0x30
+   150E 21r36r04           2357 	ld	hl,#(_blankScreen + 0x0122)
+   1511 36 30              2358 	ld	(hl),#0x30
+   1513 21r37r04           2359 	ld	hl,#(_blankScreen + 0x0123)
+   1516 36 30              2360 	ld	(hl),#0x30
+   1518 21r38r04           2361 	ld	hl,#(_blankScreen + 0x0124)
+   151B 36 30              2362 	ld	(hl),#0x30
+   151D 21r39r04           2363 	ld	hl,#(_blankScreen + 0x0125)
+   1520 36 30              2364 	ld	(hl),#0x30
+   1522 21r3Ar04           2365 	ld	hl,#(_blankScreen + 0x0126)
+   1525 36 30              2366 	ld	(hl),#0x30
+   1527 21r3Br04           2367 	ld	hl,#(_blankScreen + 0x0127)
+   152A 36 30              2368 	ld	(hl),#0x30
+   152C 21r3Cr04           2369 	ld	hl,#(_blankScreen + 0x0128)
+   152F 36 30              2370 	ld	(hl),#0x30
+   1531 21r3Dr04           2371 	ld	hl,#(_blankScreen + 0x0129)
+   1534 36 30              2372 	ld	(hl),#0x30
+   1536 21r3Er04           2373 	ld	hl,#(_blankScreen + 0x012a)
+   1539 36 30              2374 	ld	(hl),#0x30
+   153B 21r3Fr04           2375 	ld	hl,#(_blankScreen + 0x012b)
+   153E 36 30              2376 	ld	(hl),#0x30
+   1540 21r40r04           2377 	ld	hl,#(_blankScreen + 0x012c)
+   1543 36 30              2378 	ld	(hl),#0x30
+   1545 21r41r04           2379 	ld	hl,#(_blankScreen + 0x012d)
+   1548 36 30              2380 	ld	(hl),#0x30
+   154A 21r42r04           2381 	ld	hl,#(_blankScreen + 0x012e)
+   154D 36 30              2382 	ld	(hl),#0x30
+   154F 21r43r04           2383 	ld	hl,#(_blankScreen + 0x012f)
+   1552 36 30              2384 	ld	(hl),#0x30
+   1554 21r44r04           2385 	ld	hl,#(_blankScreen + 0x0130)
+   1557 36 30              2386 	ld	(hl),#0x30
+   1559 21r45r04           2387 	ld	hl,#(_blankScreen + 0x0131)
+   155C 36 30              2388 	ld	(hl),#0x30
+   155E 21r46r04           2389 	ld	hl,#(_blankScreen + 0x0132)
+   1561 36 30              2390 	ld	(hl),#0x30
+   1563 21r47r04           2391 	ld	hl,#(_blankScreen + 0x0133)
+   1566 36 30              2392 	ld	(hl),#0x30
+   1568 21r48r04           2393 	ld	hl,#(_blankScreen + 0x0134)
+   156B 36 30              2394 	ld	(hl),#0x30
+   156D 21r49r04           2395 	ld	hl,#(_blankScreen + 0x0135)
+   1570 36 30              2396 	ld	(hl),#0x30
+   1572 21r4Ar04           2397 	ld	hl,#(_blankScreen + 0x0136)
+   1575 36 30              2398 	ld	(hl),#0x30
+   1577 21r4Br04           2399 	ld	hl,#(_blankScreen + 0x0137)
+   157A 36 30              2400 	ld	(hl),#0x30
+   157C 21r4Cr04           2401 	ld	hl,#(_blankScreen + 0x0138)
+   157F 36 30              2402 	ld	(hl),#0x30
+   1581 21r4Dr04           2403 	ld	hl,#(_blankScreen + 0x0139)
+   1584 36 30              2404 	ld	(hl),#0x30
+   1586 21r4Er04           2405 	ld	hl,#(_blankScreen + 0x013a)
+   1589 36 30              2406 	ld	(hl),#0x30
+   158B 21r4Fr04           2407 	ld	hl,#(_blankScreen + 0x013b)
+   158E 36 30              2408 	ld	(hl),#0x30
+   1590 21r50r04           2409 	ld	hl,#(_blankScreen + 0x013c)
+   1593 36 30              2410 	ld	(hl),#0x30
+   1595 21r51r04           2411 	ld	hl,#(_blankScreen + 0x013d)
+   1598 36 30              2412 	ld	(hl),#0x30
+   159A 21r52r04           2413 	ld	hl,#(_blankScreen + 0x013e)
+   159D 36 30              2414 	ld	(hl),#0x30
+   159F 21r53r04           2415 	ld	hl,#(_blankScreen + 0x013f)
+   15A2 36 30              2416 	ld	(hl),#0x30
+   15A4 21r54r04           2417 	ld	hl,#(_blankScreen + 0x0140)
+   15A7 36 30              2418 	ld	(hl),#0x30
+   15A9 21r55r04           2419 	ld	hl,#(_blankScreen + 0x0141)
+   15AC 36 30              2420 	ld	(hl),#0x30
+   15AE 21r56r04           2421 	ld	hl,#(_blankScreen + 0x0142)
+   15B1 36 30              2422 	ld	(hl),#0x30
+   15B3 21r57r04           2423 	ld	hl,#(_blankScreen + 0x0143)
+   15B6 36 30              2424 	ld	(hl),#0x30
+   15B8 21r58r04           2425 	ld	hl,#(_blankScreen + 0x0144)
+   15BB 36 30              2426 	ld	(hl),#0x30
+   15BD 21r59r04           2427 	ld	hl,#(_blankScreen + 0x0145)
+   15C0 36 30              2428 	ld	(hl),#0x30
+   15C2 21r5Ar04           2429 	ld	hl,#(_blankScreen + 0x0146)
+   15C5 36 30              2430 	ld	(hl),#0x30
+   15C7 21r5Br04           2431 	ld	hl,#(_blankScreen + 0x0147)
+   15CA 36 30              2432 	ld	(hl),#0x30
+   15CC 21r5Cr04           2433 	ld	hl,#(_blankScreen + 0x0148)
+   15CF 36 30              2434 	ld	(hl),#0x30
+   15D1 21r5Dr04           2435 	ld	hl,#(_blankScreen + 0x0149)
+   15D4 36 30              2436 	ld	(hl),#0x30
+   15D6 21r5Er04           2437 	ld	hl,#(_blankScreen + 0x014a)
+   15D9 36 30              2438 	ld	(hl),#0x30
+   15DB 21r5Fr04           2439 	ld	hl,#(_blankScreen + 0x014b)
+   15DE 36 30              2440 	ld	(hl),#0x30
+   15E0 21r60r04           2441 	ld	hl,#(_blankScreen + 0x014c)
+   15E3 36 30              2442 	ld	(hl),#0x30
+   15E5 21r61r04           2443 	ld	hl,#(_blankScreen + 0x014d)
+   15E8 36 30              2444 	ld	(hl),#0x30
+   15EA 21r62r04           2445 	ld	hl,#(_blankScreen + 0x014e)
+   15ED 36 30              2446 	ld	(hl),#0x30
+   15EF 21r63r04           2447 	ld	hl,#(_blankScreen + 0x014f)
+   15F2 36 30              2448 	ld	(hl),#0x30
+   15F4 21r64r04           2449 	ld	hl,#(_blankScreen + 0x0150)
+   15F7 36 30              2450 	ld	(hl),#0x30
+   15F9 21r65r04           2451 	ld	hl,#(_blankScreen + 0x0151)
+   15FC 36 30              2452 	ld	(hl),#0x30
+   15FE 21r66r04           2453 	ld	hl,#(_blankScreen + 0x0152)
+   1601 36 30              2454 	ld	(hl),#0x30
+   1603 21r67r04           2455 	ld	hl,#(_blankScreen + 0x0153)
+   1606 36 30              2456 	ld	(hl),#0x30
+   1608 21r68r04           2457 	ld	hl,#(_blankScreen + 0x0154)
+   160B 36 30              2458 	ld	(hl),#0x30
+   160D 21r69r04           2459 	ld	hl,#(_blankScreen + 0x0155)
+   1610 36 30              2460 	ld	(hl),#0x30
+   1612 21r6Ar04           2461 	ld	hl,#(_blankScreen + 0x0156)
+   1615 36 30              2462 	ld	(hl),#0x30
+   1617 21r6Br04           2463 	ld	hl,#(_blankScreen + 0x0157)
+   161A 36 30              2464 	ld	(hl),#0x30
+   161C 21r6Cr04           2465 	ld	hl,#(_blankScreen + 0x0158)
+   161F 36 30              2466 	ld	(hl),#0x30
+   1621 21r6Dr04           2467 	ld	hl,#(_blankScreen + 0x0159)
+   1624 36 30              2468 	ld	(hl),#0x30
+   1626 21r6Er04           2469 	ld	hl,#(_blankScreen + 0x015a)
+   1629 36 30              2470 	ld	(hl),#0x30
+   162B 21r6Fr04           2471 	ld	hl,#(_blankScreen + 0x015b)
+   162E 36 30              2472 	ld	(hl),#0x30
+   1630 21r70r04           2473 	ld	hl,#(_blankScreen + 0x015c)
+   1633 36 30              2474 	ld	(hl),#0x30
+   1635 21r71r04           2475 	ld	hl,#(_blankScreen + 0x015d)
+   1638 36 30              2476 	ld	(hl),#0x30
+   163A 21r72r04           2477 	ld	hl,#(_blankScreen + 0x015e)
+   163D 36 30              2478 	ld	(hl),#0x30
+   163F 21r73r04           2479 	ld	hl,#(_blankScreen + 0x015f)
+   1642 36 30              2480 	ld	(hl),#0x30
+   1644 21r74r04           2481 	ld	hl,#(_blankScreen + 0x0160)
+   1647 36 30              2482 	ld	(hl),#0x30
+   1649 21r75r04           2483 	ld	hl,#(_blankScreen + 0x0161)
+   164C 36 30              2484 	ld	(hl),#0x30
+   164E 21r76r04           2485 	ld	hl,#(_blankScreen + 0x0162)
+   1651 36 30              2486 	ld	(hl),#0x30
+   1653 21r77r04           2487 	ld	hl,#(_blankScreen + 0x0163)
+   1656 36 30              2488 	ld	(hl),#0x30
+   1658 21r78r04           2489 	ld	hl,#(_blankScreen + 0x0164)
+   165B 36 30              2490 	ld	(hl),#0x30
+   165D 21r79r04           2491 	ld	hl,#(_blankScreen + 0x0165)
+   1660 36 30              2492 	ld	(hl),#0x30
+   1662 21r7Ar04           2493 	ld	hl,#(_blankScreen + 0x0166)
+   1665 36 30              2494 	ld	(hl),#0x30
+   1667 21r7Br04           2495 	ld	hl,#(_blankScreen + 0x0167)
+   166A 36 30              2496 	ld	(hl),#0x30
+                           2497 ;--------------------------------------------------------
+                           2498 ; Home
+                           2499 ;--------------------------------------------------------
+                           2500 	.area _HOME
+                           2501 	.area _HOME
+                           2502 ;--------------------------------------------------------
+                           2503 ; code
+                           2504 ;--------------------------------------------------------
+                           2505 	.area _CODE
+                           2506 ;main.c:10: void main() {
+                           2507 ;	---------------------------------
+                           2508 ; Function main
+                           2509 ; ---------------------------------
+   0000                    2510 _main_start::
+   0000                    2511 _main:
+                           2512 ;main.c:12: init();
+   0000 CDr0Fr00           2513 	call	_init
+                           2514 ;main.c:14: while(1) {
+   0003                    2515 00102$:
+                           2516 ;main.c:16: checkInput();				// Check for user input (and act on it)
+   0003 CDr69r00           2517 	call	_checkInput
+                           2518 ;main.c:17: updateSwitches();			// Make sure the SHOW_SPRITES and SHOW_BKG switches are on each loop
+   0006 CDr3Dr00           2519 	call	_updateSwitches
+                           2520 ;main.c:18: wait_vbl_done();			// Wait until VBLANK to avoid corrupting memory
+   0009 CDr00r00           2521 	call	_wait_vbl_done
+   000C 18 F5              2522 	jr	00102$
+   000E C9                 2523 	ret
+   000F                    2524 _main_end::
+                           2525 ;main.c:23: void init() {
+                           2526 ;	---------------------------------
+                           2527 ; Function init
+                           2528 ; ---------------------------------
+   000F                    2529 _init_start::
+   000F                    2530 _init:
+                           2531 ;main.c:25: DISPLAY_ON;						// Turn on the display
+   000F 11 40 FF           2532 	ld	de,#0xFF40
+   0012 1A                 2533 	ld	a,(de)
+   0013 5F                 2534 	ld	e,a
+   0014 16 00              2535 	ld	d,#0x00
+   0016 7B                 2536 	ld	a,e
+   0017 CB FF              2537 	set	7, a
+   0019 47                 2538 	ld	b,a
+   001A 21 40 FF           2539 	ld	hl,#0xFF40
+   001D 70                 2540 	ld	(hl),b
+                           2541 ;main.c:26: set_bkg_data(0, 47, alpha);		// Load 47 tiles into background memory
+   001E 11r00r00           2542 	ld	de,#_alpha
+   0021 D5                 2543 	push	de
+   0022 21 00 2F           2544 	ld	hl,#0x2F00
+   0025 E5                 2545 	push	hl
+   0026 CDr00r00           2546 	call	_set_bkg_data
+   0029 E8 04              2547 	add	sp, #4
+                           2548 ;main.c:30: set_bkg_tiles(0,6,10,2,helloWorld);		
+   002B 11r00r03           2549 	ld	de,#_helloWorld
+   002E D5                 2550 	push	de
+   002F 21 0A 02           2551 	ld	hl,#0x020A
+   0032 E5                 2552 	push	hl
+   0033 21 00 06           2553 	ld	hl,#0x0600
+   0036 E5                 2554 	push	hl
+   0037 CDr00r00           2555 	call	_set_bkg_tiles
+   003A E8 06              2556 	add	sp, #6
+   003C C9                 2557 	ret
+   003D                    2558 _init_end::
+                           2559 ;main.c:34: void updateSwitches() {
+                           2560 ;	---------------------------------
+                           2561 ; Function updateSwitches
+                           2562 ; ---------------------------------
+   003D                    2563 _updateSwitches_start::
+   003D                    2564 _updateSwitches:
+                           2565 ;main.c:35: HIDE_WIN;
+   003D 11 40 FF           2566 	ld	de,#0xFF40
+   0040 1A                 2567 	ld	a,(de)
+   0041 47                 2568 	ld	b,a
+   0042 16 00              2569 	ld	d,#0x00
+   0044 CB A8              2570 	res	5, b
+   0046 16 00              2571 	ld	d,#0x00
+   0048 21 40 FF           2572 	ld	hl,#0xFF40
+   004B 70                 2573 	ld	(hl),b
+                           2574 ;main.c:36: SHOW_SPRITES;
+   004C 11 40 FF           2575 	ld	de,#0xFF40
+   004F 1A                 2576 	ld	a,(de)
+   0050 5F                 2577 	ld	e,a
+   0051 16 00              2578 	ld	d,#0x00
+   0053 7B                 2579 	ld	a,e
+   0054 CB CF              2580 	set	1, a
+   0056 47                 2581 	ld	b,a
+   0057 2E 40              2582 	ld	l, #0x40
+   0059 70                 2583 	ld	(hl),b
+                           2584 ;main.c:37: SHOW_BKG;
+   005A 11 40 FF           2585 	ld	de,#0xFF40
+   005D 1A                 2586 	ld	a,(de)
+   005E 5F                 2587 	ld	e,a
+   005F 16 00              2588 	ld	d,#0x00
+   0061 7B                 2589 	ld	a,e
+   0062 CB C7              2590 	set	0, a
+   0064 47                 2591 	ld	b,a
+   0065 2E 40              2592 	ld	l, #0x40
+   0067 70                 2593 	ld	(hl),b
+   0068 C9                 2594 	ret
+   0069                    2595 _updateSwitches_end::
+                           2596 ;main.c:40: void checkInput() {
+                           2597 ;	---------------------------------
+                           2598 ; Function checkInput
+                           2599 ; ---------------------------------
+   0069                    2600 _checkInput_start::
+   0069                    2601 _checkInput:
+                           2602 ;main.c:42: if (joypad() & J_B) {
+   0069 CDr00r00           2603 	call	_joypad
+   006C 16 00              2604 	ld	d,#0x00
+   006E CB 6B              2605 	bit	5, e
+   0070 C8                 2606 	ret	Z
+                           2607 ;main.c:46: set_bkg_tiles(0,0,20,18,blankScreen);
+   0071 11r14r03           2608 	ld	de,#_blankScreen
+   0074 D5                 2609 	push	de
+   0075 21 14 12           2610 	ld	hl,#0x1214
+   0078 E5                 2611 	push	hl
+   0079 21 00 00           2612 	ld	hl,#0x0000
+   007C E5                 2613 	push	hl
+   007D CDr00r00           2614 	call	_set_bkg_tiles
+   0080 E8 06              2615 	add	sp, #6
+   0082 C9                 2616 	ret
+   0083                    2617 _checkInput_end::
+                           2618 	.area _CODE
+                           2619 	.area _CABS (ABS)
