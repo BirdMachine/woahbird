@@ -8,38 +8,49 @@ Symbol Table
     .__.CPU.                                                    =  0000 L
     .__.H$L.                                                    =  0000 L
   1 _alpha                                                         0000 GR
-  0 _bird_map_data                                                 0019 GR
-  0 _bird_tile_count                                               0017 GR
-  0 _bird_tile_data                                                0193 GR
-  0 _bird_tile_data_size                                           0015 GR
-  0 _bird_tile_map_height                                          0013 GR
-  0 _bird_tile_map_size                                            000F GR
-  0 _bird_tile_map_width                                           0011 GR
+  0 _birdTitle_map_data                                            0019 GR
+  0 _birdTitle_tile_count                                          0017 GR
+  0 _birdTitle_tile_data                                           0181 GR
+  0 _birdTitle_tile_data_size                                      0015 GR
+  0 _birdTitle_tile_map_height                                     0013 GR
+  0 _birdTitle_tile_map_size                                       000F GR
+  0 _birdTitle_tile_map_width                                      0011 GR
+  0 _birdWelcomeSM_map_data                                        109B GR
+  0 _birdWelcomeSM_tile_count                                      1099 GR
+  0 _birdWelcomeSM_tile_data                                       1203 GR
+  0 _birdWelcomeSM_tile_data_size                                  1097 GR
+  0 _birdWelcomeSM_tile_map_height                                 1095 GR
+  0 _birdWelcomeSM_tile_map_size                                   1091 GR
+  0 _birdWelcomeSM_tile_map_width                                  1093 GR
   1 _blankScreen                                                   0314 GR
-  0 _checkInput                                                    0B9D GR
-  0 _checkInput_end                                                0BDB GR
-  0 _checkInput_start                                              0B9D GR
+  0 _checkInput                                                    2252 GR
+  0 _checkInput_end                                                225D GR
+  0 _checkInput_start                                              2252 GR
   1 _helloWorld                                                    0300 GR
-  0 _init                                                          0B43 GR
-  0 _init_end                                                      0B71 GR
-  0 _init_start                                                    0B43 GR
+  0 _init                                                          21C3 GR
+  0 _init_end                                                      2207 GR
+  0 _init_start                                                    21C3 GR
     _joypad                                                        **** GX
   0 _main                                                          0000 GR
   0 _main_end                                                      000F GR
   0 _main_start                                                    0000 GR
+  0 _menu                                                          2233 GR
+  0 _menu_end                                                      2252 GR
+  0 _menu_start                                                    2233 GR
     _set_bkg_data                                                  **** GX
     _set_bkg_tiles                                                 **** GX
-  0 _updateSwitches                                                0B71 GR
-  0 _updateSwitches_end                                            0B9D GR
-  0 _updateSwitches_start                                          0B71 GR
+  0 _updateSwitches                                                2207 GR
+  0 _updateSwitches_end                                            2233 GR
+  0 _updateSwitches_start                                          2207 GR
     _wait_vbl_done                                                 **** GX
+
 
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (GameBoy Z80-like CPU), page 2.
 Hexadecimal [16-Bits]
 
 Area Table
 
-   0 _CODE                                      size  BDB   flags    0
+   0 _CODE                                      size 225D   flags    0
    1 _DATA                                      size  47C   flags    0
    2 _DABS                                      size    0   flags    8
    3 _HOME                                      size    0   flags    0
