@@ -5,6 +5,9 @@
 #include "corvid.c"
 #include "menu.c"
 #include "weather.c"
+#include "news.c"
+#include "search.c"
+#include "gaems.c"
 
 void init();
 void checkInput();
@@ -52,21 +55,45 @@ void menu() {
 void weather() {
 	set_bkg_data(0,255,sun2_tile_data);
 	set_bkg_tiles(0,0,20,18,sun2_map_data);
-	if (joypad() & J_B) {
-		menu();
-    }
 }
 
+void news() {
+	set_bkg_data(0,255,news2_tile_data);
+	set_bkg_tiles(0,0,20,18,news2_map_data);
+}
+
+void search() {
+	set_bkg_data(0,255,search_tile_data);
+	set_bkg_tiles(0,0,20,18,search_map_data);
+}
+
+void gaems() {
+	set_bkg_data(0,255,gaems_tile_data);
+	set_bkg_tiles(0,0,20,18,gaems_map_data);
+}
 
 void checkInput() {
 
-    if (joypad() & J_A) {
+    if (joypad() & J_B) {
 		menu();
     }
 
-    if (joypad() & J_LEFT) {
+    if (joypad() & J_RIGHT) {
 		weather();
     }
+
+    if (joypad() & J_UP) {
+		news();
+    }
+
+     if (joypad() & J_LEFT) {
+		search();
+    }
+
+     if (joypad() & J_DOWN) {
+		gaems();
+    }
+
 
 }
 

@@ -15,52 +15,87 @@ Symbol Table
   0 _birdTitle_tile_map_height                                     0013 GR
   0 _birdTitle_tile_map_size                                       000F GR
   0 _birdTitle_tile_map_width                                      0011 GR
-  0 _birdWelcomeSM_map_data                                        109B GR
-  0 _birdWelcomeSM_tile_count                                      1099 GR
-  0 _birdWelcomeSM_tile_data                                       1203 GR
-  0 _birdWelcomeSM_tile_data_size                                  1097 GR
-  0 _birdWelcomeSM_tile_map_height                                 1095 GR
-  0 _birdWelcomeSM_tile_map_size                                   1091 GR
-  0 _birdWelcomeSM_tile_map_width                                  1093 GR
+  0 _birdWelcomeSM_map_data                                        10AB GR
+  0 _birdWelcomeSM_tile_count                                      10A9 GR
+  0 _birdWelcomeSM_tile_data                                       1213 GR
+  0 _birdWelcomeSM_tile_data_size                                  10A7 GR
+  0 _birdWelcomeSM_tile_map_height                                 10A5 GR
+  0 _birdWelcomeSM_tile_map_size                                   10A1 GR
+  0 _birdWelcomeSM_tile_map_width                                  10A3 GR
   1 _blankScreen                                                   0314 GR
-  0 _checkInput                                                    2FFD GR
-  0 _checkInput_end                                                3014 GR
-  0 _checkInput_start                                              2FFD GR
+  0 _checkInput                                                    5C66 GR
+  0 _checkInput_end                                                5CA1 GR
+  0 _checkInput_start                                              5C66 GR
+  0 _gaems                                                         5C47 GR
+  0 _gaems_end                                                     5C66 GR
+  0 _gaems_map_data                                                4B13 GR
+  0 _gaems_start                                                   5C47 GR
+  0 _gaems_tile_count                                              4B11 GR
+  0 _gaems_tile_data                                               4C7B GR
+  0 _gaems_tile_data_size                                          4B0F GR
+  0 _gaems_tile_map_height                                         4B0D GR
+  0 _gaems_tile_map_size                                           4B09 GR
+  0 _gaems_tile_map_width                                          4B0B GR
   1 _helloWorld                                                    0300 GR
-  0 _init                                                          2F45 GR
-  0 _init_end                                                      2F89 GR
-  0 _init_start                                                    2F45 GR
+  0 _init                                                          5B5B GR
+  0 _init_end                                                      5B9F GR
+  0 _init_start                                                    5B5B GR
     _joypad                                                        **** GX
   0 _main                                                          0000 GR
   0 _main_end                                                      000F GR
   0 _main_start                                                    0000 GR
-  0 _menu                                                          2FB5 GR
-  0 _menu_end                                                      2FD4 GR
-  0 _menu_start                                                    2FB5 GR
+  0 _menu                                                          5BCB GR
+  0 _menu_end                                                      5BEA GR
+  0 _menu_start                                                    5BCB GR
+  0 _news                                                          5C09 GR
+  0 _news2_map_data                                                2F5F GR
+  0 _news2_tile_count                                              2F5D GR
+  0 _news2_tile_data                                               30C7 GR
+  0 _news2_tile_data_size                                          2F5B GR
+  0 _news2_tile_map_height                                         2F59 GR
+  0 _news2_tile_map_size                                           2F55 GR
+  0 _news2_tile_map_width                                          2F57 GR
+  0 _news_end                                                      5C28 GR
+  0 _news_start                                                    5C09 GR
+  0 _search                                                        5C28 GR
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (GameBoy Z80-like CPU), page 2.
+Hexadecimal [16-Bits]
+
+Symbol Table
+
+  0 _search_end                                                    5C47 GR
+  0 _search_map_data                                               3D51 GR
+  0 _search_start                                                  5C28 GR
+  0 _search_tile_count                                             3D4F GR
+  0 _search_tile_data                                              3EB9 GR
+  0 _search_tile_data_size                                         3D4D GR
+  0 _search_tile_map_height                                        3D4B GR
+  0 _search_tile_map_size                                          3D47 GR
+  0 _search_tile_map_width                                         3D49 GR
     _set_bkg_data                                                  **** GX
     _set_bkg_tiles                                                 **** GX
-  0 _sun2_map_data                                                 21CD GR
-  0 _sun2_tile_count                                               21CB GR
-  0 _sun2_tile_data                                                2335 GR
-  0 _sun2_tile_data_size                                           21C9 GR
-  0 _sun2_tile_map_height                                          21C7 GR
-  0 _sun2_tile_map_size                                            21C3 GR
-  0 _sun2_tile_map_width                                           21C5 GR
-  0 _updateSwitches                                                2F89 GR
-  0 _updateSwitches_end                                            2FB5 GR
-  0 _updateSwitches_start                                          2F89 GR
+  0 _sun2_map_data                                                 21DD GR
+  0 _sun2_tile_count                                               21DB GR
+  0 _sun2_tile_data                                                2345 GR
+  0 _sun2_tile_data_size                                           21D9 GR
+  0 _sun2_tile_map_height                                          21D7 GR
+  0 _sun2_tile_map_size                                            21D3 GR
+  0 _sun2_tile_map_width                                           21D5 GR
+  0 _updateSwitches                                                5B9F GR
+  0 _updateSwitches_end                                            5BCB GR
+  0 _updateSwitches_start                                          5B9F GR
     _wait_vbl_done                                                 **** GX
-  0 _weather                                                       2FD4 GR
-  0 _weather_end                                                   2FFD GR
-  0 _weather_start                                                 2FD4 GR
+  0 _weather                                                       5BEA GR
+  0 _weather_end                                                   5C09 GR
+  0 _weather_start                                                 5BEA GR
 
 
-ASxxxx Assembler V02.00 + NoICE + SDCC mods  (GameBoy Z80-like CPU), page 2.
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (GameBoy Z80-like CPU), page 3.
 Hexadecimal [16-Bits]
 
 Area Table
 
-   0 _CODE                                      size 3014   flags    0
+   0 _CODE                                      size 5CA1   flags    0
    1 _DATA                                      size  47C   flags    0
    2 _DABS                                      size    0   flags    8
    3 _HOME                                      size    0   flags    0
