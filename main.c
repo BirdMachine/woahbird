@@ -4,6 +4,7 @@
 #include "blankScreen.c"
 #include "corvid.c"
 #include "menu.c"
+#include "weather.c"
 
 void init();
 void checkInput();
@@ -48,12 +49,23 @@ void menu() {
 	set_bkg_tiles(0,0,20,18,birdWelcomeSM_map_data);
 }
 
+void weather() {
+	set_bkg_data(0,255,sun2_tile_data);
+	set_bkg_tiles(0,0,20,18,sun2_map_data);
+	if (joypad() & J_B) {
+		menu();
+    }
+}
+
+
 void checkInput() {
 
     if (joypad() & J_A) {
-		
 		menu();
-		
+    }
+
+    if (joypad() & J_LEFT) {
+		weather();
     }
 
 }

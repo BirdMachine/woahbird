@@ -23,26 +23,36 @@ Symbol Table
   0 _birdWelcomeSM_tile_map_size                                   1091 GR
   0 _birdWelcomeSM_tile_map_width                                  1093 GR
   1 _blankScreen                                                   0314 GR
-  0 _checkInput                                                    2252 GR
-  0 _checkInput_end                                                225D GR
-  0 _checkInput_start                                              2252 GR
+  0 _checkInput                                                    2FFD GR
+  0 _checkInput_end                                                3014 GR
+  0 _checkInput_start                                              2FFD GR
   1 _helloWorld                                                    0300 GR
-  0 _init                                                          21C3 GR
-  0 _init_end                                                      2207 GR
-  0 _init_start                                                    21C3 GR
+  0 _init                                                          2F45 GR
+  0 _init_end                                                      2F89 GR
+  0 _init_start                                                    2F45 GR
     _joypad                                                        **** GX
   0 _main                                                          0000 GR
   0 _main_end                                                      000F GR
   0 _main_start                                                    0000 GR
-  0 _menu                                                          2233 GR
-  0 _menu_end                                                      2252 GR
-  0 _menu_start                                                    2233 GR
+  0 _menu                                                          2FB5 GR
+  0 _menu_end                                                      2FD4 GR
+  0 _menu_start                                                    2FB5 GR
     _set_bkg_data                                                  **** GX
     _set_bkg_tiles                                                 **** GX
-  0 _updateSwitches                                                2207 GR
-  0 _updateSwitches_end                                            2233 GR
-  0 _updateSwitches_start                                          2207 GR
+  0 _sun2_map_data                                                 21CD GR
+  0 _sun2_tile_count                                               21CB GR
+  0 _sun2_tile_data                                                2335 GR
+  0 _sun2_tile_data_size                                           21C9 GR
+  0 _sun2_tile_map_height                                          21C7 GR
+  0 _sun2_tile_map_size                                            21C3 GR
+  0 _sun2_tile_map_width                                           21C5 GR
+  0 _updateSwitches                                                2F89 GR
+  0 _updateSwitches_end                                            2FB5 GR
+  0 _updateSwitches_start                                          2F89 GR
     _wait_vbl_done                                                 **** GX
+  0 _weather                                                       2FD4 GR
+  0 _weather_end                                                   2FFD GR
+  0 _weather_start                                                 2FD4 GR
 
 
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (GameBoy Z80-like CPU), page 2.
@@ -50,7 +60,7 @@ Hexadecimal [16-Bits]
 
 Area Table
 
-   0 _CODE                                      size 225D   flags    0
+   0 _CODE                                      size 3014   flags    0
    1 _DATA                                      size  47C   flags    0
    2 _DABS                                      size    0   flags    8
    3 _HOME                                      size    0   flags    0
