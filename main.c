@@ -1,10 +1,9 @@
 #include <gb/gb.h>
-#include "alpha.c"
-#include "helloWorld.c"
 #include "blankScreen.c"
 #include "corvid.c"
 #include "menu.c"
 #include "weather.c"
+#include "repent.c"
 #include "news.c"
 #include "search.c"
 #include "gaems.c"
@@ -12,6 +11,9 @@
 void init();
 void checkInput();
 void updateSwitches();
+
+UBYTE i;
+
 
 void main() {
 
@@ -39,6 +41,8 @@ void init() {
 	// Show the background
 	SHOW_BKG;	
 
+	i = 0;
+
 }
 
 void updateSwitches() {
@@ -53,8 +57,25 @@ void menu() {
 }
 
 void weather() {
+	i = 0;
 	set_bkg_data(0,255,sun2_tile_data);
 	set_bkg_tiles(0,0,20,18,sun2_map_data);
+	while(i == 0){
+		set_bkg_data(0,255,sun2_tile_data);
+		set_bkg_tiles(0,0,20,18,sun2_map_data);
+		delay(500);
+		set_bkg_data(0,255,sun3_tile_data);
+		set_bkg_tiles(0,0,20,18,sun3_map_data);
+		delay(500);
+		//checkInput();
+		if (joypad() & J_B) {
+			menu();
+			i = 2;
+			break;
+	    }
+	}
+		
+	
 }
 
 void news() {
